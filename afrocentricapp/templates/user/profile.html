@@ -1,0 +1,103 @@
+{% extends 'user/layout.html' %}
+
+{% block pagecontent %}
+    
+    <header class="container-fluid">
+        <div class="row px-0" style="border:1px solid green; overflow: hidden; position: relative;">
+            <div class="col-md bg-image-full-tour px-0">
+                <div style="height: 150px; background-color: rgba(46, 46, 54, 0.7);color:white; width: 100%;" class="px-0">
+                    <h2 class="pt-5" align="center">User Dashboard</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+            <div class="col-lg-2">
+                <div class="row py-3">
+                    <div class="col-lg-12 py-0">
+                        <ul class="nav flex-column">
+                            <li class="nav-item"> <a class="nav-link" href="#">  Dashboard</a></li>
+
+                            <li class="nav-item"><a class="nav-link" href="/userupdate"> <i class="fa-solid fa-user"></i> &nbsp; Profile Summary</a></li>
+
+                            <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-envelope"></i> &nbsp; Messages </a></li>
+
+                            <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-suitcase-rolling"></i> &nbsp; Tour Booking </a></li>
+
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-solid fa-passport"></i> &nbsp; Visa Application </a></li>
+
+                            <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-box"></i> &nbsp; Orders </a></li>
+
+                            <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-credit-card"></i> &nbsp; Payments </a></li>
+
+                            <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-gears"></i> &nbsp; Help and settings</a></li>
+
+                            <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-circle-question"></i> &nbsp; FAQ </a></li>
+
+                            <li class="nav-item mx-5">
+                                <a id='headerbtn' class="nav-link" href="/logout">Sign Out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-10" id="cardswrapper">
+                <div class="row">
+                    <div class="col-lg-12 py-3">
+                        <form action="/update" method="post">
+                            <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+                            <div class="mb-3">
+                                <label for="firstname" class="form-label">First Name:</label>
+                                <input type="text" class="form-control" id="firstname" placeholder="Enter Your First Name" name="firstname" value="{{ userdeets.customer_fname }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="lastname" class="form-label">Last Name:</label>
+                                <input type="text" class="form-control" id="lastname" placeholder="Enter Your Last Name" name="lastname" value="{{ userdeets.customer_lname }}" required>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="email" class="form-label">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="{{ userdeets.customer_email }}" required>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label for="phone" class="form-label">Phone:</label>
+                                <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" name="phone" value="{{ userdeets.customer_phone }}" required>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                {% if userdeets.customer_gender == Male %}
+                                <label for="gender" class="form-label">Gender:</label>
+                                <select class="" name="gender" id="gender" required>
+                                    <option value="male" selected>Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                                {% else %}
+                                <label for="gender" class="form-label">Gender:</label>
+                                <select class="" name="gender" id="gender" required>
+                                    <option value="male" >Male</option>
+                                    <option value="female" selected>Female</option>
+                                </select>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="pwd" class="form-label">Password:</label>
+                                <input type="password" class="form-control" id="pwd" placeholder="Enter New Password" name="pswd1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="pwd" class="form-label">Confirm Password:</label>
+                                <input type="password" class="form-control" id="pwd2" placeholder="Confirm New Password" name="pswd2" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update Details</button>
+                          </form>
+                    </div>
+
+                </div>
+
+            </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock pagecontent %}

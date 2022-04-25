@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Meta Tags-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Afrocentric Admin Login</title>
+
+    <!--css styling & Animation sheet-->
+	<link href="/static/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/assets/animate.css-main/animate.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" type="text/css" href="/static/assets/fontawesomenew/css/all.css">
+	<link href="/static/css/afrocentric.css" rel="stylesheet" type="text/css">
+
+	<!--favicon links-->
+	<link rel="apple-touch-icon" sizes="180x180" href="/static/assets/favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon_io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/static/assets/favicon_io/favicon-16x16.png">
+	<link rel="manifest" href="/static/assets/favicon_io/site.webmanifest">
+
+	<style type="text/css">
+		footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #navwrap {
+            display:flex !important;
+            flex-direction: row !important;
+            justify-content:flex-end !important;
+        }
+
+
+	</style>
+
+</head>
+    <header class="container-fluid">
+      <div class="row">
+        <div class="col-lg-2 justify-content-center px-3">
+            <a class="navbar-brand" href="#">
+                <img src="/static/assets/img/media/AfrocentricLogo1.png" alt="brandlogo" width="150" class="d-inline-block align-text-top">
+            </a>
+        </div>
+        <div id="navwrap" class="col-lg-10 py-3 px-3">
+
+            {% if session.get("admin") != None %}
+            <div id="navicons" class="mx-3 px-3">
+                
+                <span> Hello, {{ admindeets.admin_fname }} </span> &nbsp; &nbsp;
+
+                <span><a href="/admin/dashboard" target="_blank" class=""><i class="fa-solid fa-user" style="color: black"></i></a></span> &nbsp; &nbsp;
+
+                <span><a href="http://" target="_blank" class=""><i class="fa-solid fa-envelope" style="color: black;"></i></a></span> &nbsp; &nbsp;
+
+                <button type="submit" class="btn btn-outline-light"><a href="/admin/logout" target="_self" class="" style="text-decoration:none">Log Out</a></button>
+
+            </div>
+            {% else %}
+
+            <div id="navicons" class="mx-3 px-3">
+                
+                <span><a href="http://" target="_blank" class="" style="text-decoration:none"> Already an Admin? Login here to view Admin Dashboard</a></span> &nbsp; &nbsp;
+
+                <button type="submit" class="btn btn-outline-light"><a href="/admin/login" target="_self" class="" style="text-decoration:none">Login</a></button>
+
+            </div>
+            {% endif %}
+
+        </div>
+      </div>
+    </header>
+        <section class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="row">
+                        <div class="col-lg-12 col-md mt-2">
+                            <div class="alert alert-danger mb-3">
+                                {% with msg = get_flashed_messages() %}
+                                    {% if msg %}
+
+                                <p class="alert alert-danger">{{ msg }}</p>
+
+                                    {% endif %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7">
+                    <form action="" method="post">
+                        <div class="row">
+                            <h5 align="center">Admin Registration Page</h5>
+                            <div class="col-12 mb-3 mt-3">
+                                <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+                                <label for="email" class="form-label">Email:</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="firstname" class="form-label">First Name:</label>
+                                <input type="text" class="form-control" id="firstname" placeholder="Enter Your First Name" name="firstname" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="lastname" class="form-label">First Name:</label>
+                                <input type="text" class="form-control" id="lastname" placeholder="Enter Your Last Name" name="lastname" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="pwd" class="form-label">Password:</label>
+                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password1" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="pwd" class="form-label">Confirm Password:</label>
+                                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password2" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <button type="submit" class="btn btn-primary">Sign Up</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </section>
+<footer>
+            <div class="row">
+                <div class="col-12">
+                    <p align="center" style="font-size:small"><i>@2022 Copyright Afrocentrictours.com</p>
+                </div>
+            </div>
+            
+        </footer>
+       
+       <!--Jquery-->
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+
+    <!--Bootstrap JS-->
+    <script type="text/javascript" src="/static/assets/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

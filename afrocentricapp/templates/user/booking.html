@@ -1,0 +1,50 @@
+{% extends 'user/layout.html' %}
+
+{% block pagecontent %}
+
+         <!-- Image element - background image for the section in the line below -->
+    <header class="container-fluid">
+            <div class="row px-0" style="border:1px solid green; overflow: hidden; position: relative;">
+                <div class="col-md bg-image-full-tour px-0">
+                    <div style="height: 150px; background-color: rgba(46, 46, 54, 0.7);color:white; width: 100%;" class="px-0">
+                        <h2 class="pt-5" align="center">Book Tour Package</h2>
+                    </div>
+                </div>
+            </div>
+    </header>
+
+    <section class="container-fluid">
+        <div class="row mx-5 py-5">
+            <div class="col-12 mb-3">
+                <h5>{{ tourdeets.tourpackage_name }}</h5>
+            </div>
+            <form method="post" action="">
+                <div class="col-12 mb-3 form-floating">
+                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+                    <input type="email" class="form-control" id="floatingInput" placeholder="email" name="email">
+                    <label for="floatingInput">Customer Email</label>
+                </div>
+                <div class="col-12 mb-3 form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Full name" name="firstname">
+                    <label for="floatingInput">First Name</label>
+                </div>
+                <div class="col-12 mb-3 form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Last name" name="lastname">
+                    <label for="floatingInput">Last Name</label>
+                </div>
+                <div class="col-12 mb-3 form-floating">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="amount">
+                            <option selected>Choose Stay Type</option>
+                            <option value="{{ tourdeets.tourpackage_price_single}}">Single Stay price: {{ tourdeets.tourpackage_price_single }}</option>
+                            <option value="{{ tourdeets.tourpackage_price_sharing }}">Sharing price: {{ tourdeets.tourpackage_price_sharing}}</option>
+                        </select>
+                        <label for="Formselect" class="form-label"> Tour Package Amount</label>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto py-2">
+                    <button class="btn btn-primary" type="submit">Book</button>
+                </div>  
+            </form>
+        </div>
+    </section>   
+        
+{% endblock pagecontent %}

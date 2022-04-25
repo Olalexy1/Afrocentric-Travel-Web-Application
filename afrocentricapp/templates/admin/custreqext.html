@@ -1,0 +1,107 @@
+
+{% extends 'admin/layout.html' %}
+
+{% block pagecontent %}
+                <div class="col-lg-10" id="cardswrapper">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row py-3 px-3">
+                                <div class="col-lg px-3 py-3">
+                                    <div class="card" style="width:100%">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Customer Table</h5>
+                                          <p class="card-text"><p>
+                                        </div>
+                                      </div>
+                                </div>
+
+                                <div class="col-lg px-3 py-3">
+                                    <div class="card" style="width:100%">
+                                        <div class="card-body">
+                                          <h5 class="card-title"></h5>
+                                          <p class="card-text"><p>
+                                        </div>
+                                      </div>
+                                </div>
+
+                                <div class="col-lg px-3 py-3">
+                                    <div class="card" style="width:100%;">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Modify Tour Package</h5>
+                                          <p class="card-text"></p>
+                                        </div>
+                                      </div>
+                                </div>
+                               
+                                <div class="col-lg px-3 py-3">
+                                    <div class="card" style="width:100%;">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Delete Tour Pacakage</h5>
+                                          <p class="card-text"></p>
+                                        </div>
+                                      </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div style="overflow-x:auto;">
+                              <table class="table table-dark table-striped">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone Number</th>
+                                    <th scope="col">Country</th>
+                                    <th scope="col">Origin City</th>
+                                    <th scope="col">Destination City</th>
+                                    <th scope="col">Travel Date</th>
+                                    <th scope="col">Return Date</th>
+                                    <th scope="col">Group Size</th>
+                                    <th scope="col">Additional Info</th>
+                                    <th scope="col">Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in reqdeets %}
+                                  <tr>
+                                    <th scope="row">{{ loop.index }}</th>
+                                    <td>{{ i.custom_request_fname }}</td>
+                                    <td>{{ i.custom_request_lname }}</td>
+                                    <td>{{ i.custom_request_email }}</td>
+                                    <td>{{ i.customer_request_phone }}</td>
+                                    <td>{{ i.custom_request_country }}</td>
+                                    <td>{{ i.custom_request_origin_city }}</td>
+                                    <td>{{ i.custom_request_destination_city }}</td>
+                                    <td>{{ i.custom_request_travel_date }}</td>
+                                    <td>{{ i.custom_request_return_date }}</td>
+                                    <td>{{ i.custom_request_group_size }}</td>
+                                    <td>{{ i.custom_request_additional_info }}</td>
+                                    <td><a href="/admin/customer/modify/{{i.customer_id}}" Class="btn btn-danger mb-3">Modify</a> &nbsp; <a href="/admin/customer/delete/{{i.customer_id}}" Class="btn btn-danger">Delete</a></td>
+                                  </tr>
+                                    {% endfor %}
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-lg-12">
+                            <div class="row py-3">
+                                <div class="col-lg-12 px-3 py-3"></div>
+                                <div class="col-lg-12 px-3 py-3"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock pagecontent %}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Meta Tags-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Afrocentric Admin Home</title>
+
+    <!--css styling & Animation sheet-->
+	<link href="/static/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/assets/animate.css-main/animate.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" type="text/css" href="/static/assets/fontawesomenew/css/all.css">
+	<link href="/static/css/afrocentric.css" rel="stylesheet" type="text/css">
+
+	<!--favicon links-->
+	<link rel="apple-touch-icon" sizes="180x180" href="/static/assets/favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon_io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/static/assets/favicon_io/favicon-16x16.png">
+	<link rel="manifest" href="/static/assets/favicon_io/site.webmanifest">
+
+	<style type="text/css">
+		
+	</style>
+
+</head>
+
+    <header>
+      <div class="row">
+        <div class="col-lg-2 justify-content-center px-3">
+            <a class="navbar-brand" href="#">
+                <img src="/static/assets/img/media/AfrocentricLogo1.png" alt="brandlogo" width="150" class="d-inline-block align-text-top">
+            </a>
+        </div>
+        <div id="navwrap" class="col-lg-10 py-3 px-3">
+            <button class="navbar-toggler px-3" type="button">
+                <span class=""><i class="fa-solid fa-bars"></i></span>
+            </button> &nbsp; 
+
+            
+
+            
+
+            <div id="navicons" class="mx-3 px-3">
+                
+                <span>Hello, Olalekan</span> &nbsp; &nbsp;
+
+                <span><a href="http://" target="_blank" class=""><i class="fa-solid fa-user" style="color: black"></i></a></span> &nbsp; &nbsp;
+
+                <span><a href="http://" target="_blank" class=""><i class="fa-solid fa-envelope" style="color: black;"></i></a></span> &nbsp; &nbsp;
+                
+                <a type="button" class="btn btn-outline-light" href="/admin/logout" target="_blank" class="">Logout</a>
+
+            </div>
+
+        </div>
+      </div>
+    </header>
+    
+        <section>
+            <div class="container-fluid">
+                <div class="row">
+                <div class="col-lg-2">
+                    <div class="row py-3">
+                        <div class="col-lg-12 py-0">
+                            <ul class="nav flex-column">
+                                <li class="nav-item"> <a class="nav-link" href="#"> <i class="fa-solid fa-user"></i> &nbsp; Dashboard</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-location-dot"></i> &nbsp; Destinations</a></li>
+                                
+                                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fa-solid fa-users-cog"></i> &nbsp; Customers</a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                      </ul>
+
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-suitcase-rolling"></i> &nbsp; Tour Pacakges</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-credit-card"></i> &nbsp; Payment</a></li>
+
+                                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fa-solid fa-shop"></i> &nbsp; Afroshop</a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                      </ul>
+                                </li>
+
+                                <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-gears"></i> &nbsp; Help and settings</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% block pagecontent %}
+
+                {% endblock pagecontent %}
+                </div>
+            </div>
+        </section>
+ 
+        <footer>
+            <div class="col-md-12">
+                <p align="center" style="font-size:small"><i>@2022 Copyright Afrocentrictours.com</p>
+            </div>
+        </footer>
+        <script type="text/javascript" src="/static/assets/js/jquery.js"></script>
+        <script type="text/javascript" src="/static/assets/js/bootstrap.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+</body>
+</html>

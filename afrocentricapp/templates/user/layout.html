@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Meta Tags-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Afrocentric Home</title>
+
+    <!--css styling & Animation sheet-->
+	<link href="/static/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/assets/animate.css-main/animate.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" type="text/css" href="/static/assets/fontawesomenew/css/all.css">
+	<link href="/static/css/afrocentric.css" rel="stylesheet" type="text/css">
+
+	<!--favicon links-->
+	<link rel="apple-touch-icon" sizes="180x180" href="/static/assets/favicon_io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon_io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/static/assets/favicon_io/favicon-16x16.png">
+	<link rel="manifest" href="/static/assets/favicon_io/site.webmanifest">
+
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <div id="headtop" class="row">
+                <div class="col-md-6">
+                    <span>+2348188394639 | +2347053755127</span>
+                    <i class="fa-solid fa-square-phone" style="color: white;"></i>
+                </div>
+                <div id="socialmediadiv" class="col-md-6">
+                    <span><a href="http://" target="_blank" class=""><i class="fa-solid fa-envelope" style="color: white;"></i></a></span> &nbsp; &nbsp;
+                    <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-instagram" style="color: white"></i></a></span> &nbsp; &nbsp;
+                    <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-facebook" style="color: white"></i></a></span> &nbsp; &nbsp;
+                    <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-twitter" style="color: white"></i></a></span> &nbsp; &nbsp;
+                    <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-youtube" style="color: white"></i></a></span> &nbsp; &nbsp;
+                    <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-linkedin" style="color: white"></i></a></span> &nbsp; &nbsp;
+                </div>
+            </div>
+        </div>
+    </header>
+    <header>
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container-fluid mx-lg-3">
+                <a class="navbar-brand" href="/">
+                    <img src="/static/assets/img/media/AfrocentricLogo1.png" alt="brandlogo" width="150" class="d-inline-block align-text-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" data-bs-target="navbarSupportedContent">
+                    <span><i class="fa-solid fa-bars"></i></span>
+                </button>
+                <div class="collapse navbar-collapse mx-2 py-3" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-3 mb-2 mb-lg-0 nav-fill w-100">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/tourpackage">Tour Packages</a></li>
+                        <li><a class="dropdown-item" href="#">Visa Assistance</a></li>
+                        <li><a class="dropdown-item" href="/request">Custom Package</a></li>
+                        </ul>
+                    </li>
+        
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Destinations
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Dubai</a></li>
+                            <li><a class="dropdown-item" href="#">South Africa</a></li>
+                            <li><a class="dropdown-item" href="#">Seychelles</a></li>
+                            <li><a class="dropdown-item" href="#">Nigeria</a></li>
+                            <li><a class="dropdown-item" href="#">Morocco</a></li>
+                            <li><a class="dropdown-item" href="#">Egypt</a></li>
+                            <li><a class="dropdown-item" href="#">Kenya</a></li>
+                            <li><a class="dropdown-item" href="#">More</a></li>
+                        </ul>
+                    </li>
+        
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Afrocentric Shop
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Afro-Inspired</a></li>
+                        <li><a class="dropdown-item" href="#">Travel Souvenirs</a></li>
+                        <li><a class="dropdown-item" href="#">Afro-Arts</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blog</a>
+                    </li>
+                    {% if session.get("loggedin") != None: %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-user"></i> &nbsp; Hello {{ userdeets.customer_fname }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                
+                                <li><a class="dropdown-item" href="/user"> <i class="fa-solid fa-user"></i> &nbsp; My Account </a></li>
+
+                                <li><a id='headerbtn' class="dropdown-item" href="/logout" type="button"><i class="fa-solid fa-right-from-bracket"></i> &nbsp; Logout </a></li>
+                                
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-user"></i> &nbsp; Account
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a id='headerbtn' class="dropdown-item" href="#" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"><i class="fa-solid fa-right-to-bracket"></i> &nbsp; Login </a></li>
+                                <li><a class="dropdown-item" href="#" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2"> <i class="fa-solid fa-user-plus"></i> &nbsp; SignUp</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
+
+                        <li class="nav-item">
+                            <a id='headerbtn' class="nav-link" href="/request">Let's Plan my trip</a>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    {% block pagecontent %}
+
+
+    {% endblock pagecontent %}
+    
+        <footer>
+            <div class="container-fluid">
+                <div id="footer" class="row px-1 mx-4">
+                    <div class="col-lg-4 col-md-6 mt-3">
+                        <h5>Afrocentric Tours</h5>
+                        <p><a href="http://" target="_blank" class="">Who we are</a></p>
+                        <p><a href="http://" target="_blank" class="">What we do</a></p>
+                        <p><a href="http://" target="_blank" class="">FAQs</a></p>
+                        <p><a href="http://" target="_blank" class="">Privacy Policy</a></p>
+                        <p><a href="http://" target="_blank" class="">Terms and Condition</a></p>
+                        <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-instagram fa-1x" style="color: white"></i></a></span>
+                        &nbsp; &nbsp; <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-facebook fa-1x" style="color: white"></i></a></span>
+                        &nbsp; &nbsp; <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-twitter fa-1x" style="color: white"></i></a></span>
+                        &nbsp; &nbsp; <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-youtube fa-1x" style="color: white"></i></a></span>
+                        &nbsp; &nbsp; <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-linkedin-in fa-1x" style="color: white"></i></a></span>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mt-3">
+                        <h5>Quick Links</h5>
+                        <p><a href="http://" target="_blank" class="">Hot Deals</a></p>
+                        <p><a href="http://" target="_blank" class="">Popular Tours</a></p>
+                        <p><a href="http://" target="_blank" class="">Design your Trip</a></p>
+                        <p><a href="http://" target="_blank" class="">All Tour Pacakges</a></p>
+                        <p><a href="http://" target="_blank" class="">Popular Destinations</a></p>
+                        <p><a href="/reviews" target="_blank" class="">Submit Review</a></p>
+                    </div>
+                    <div class="col-lg-4 col-md-12 mt-3">
+                        <h5>Subscription Form</h5>
+                            <p>Subscribe to our news letters on the latest travel deals</p>
+                                <form action="/subscribers" method="post">
+                                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+                                    <div class="form-floating form-group mb-3">
+                                        <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
+                                        <label style="color:black" for="email">Enter Email address</label>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="checked" required>
+                                        <label class="form-check-label" for="flexCheckDefault">I agree with the terms and condition</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary form-control" type="submit">Subscribe</button>
+                                    </div>
+                                </form>
+                    </div>
+                    <div class="col-md-12">
+                    <p align="center" style="font-size:small"><i>@2022 Copyright Afrocentrictours.com</p>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </footer>
+  
+        <!-- Modal for signin-->
+        <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Login Here</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/login" method="post">
+                        <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+                        <div class="mb-3 mt-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                        <label for="pwd" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="pwd3" placeholder="Enter password" name="pswd" required>
+                        </div>
+                        <div class="form-check mb-3">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="remember"> Remember me
+                        </label> &nbsp; &nbsp; &nbsp; &nbsp;
+                        <a href="http://" target="_blank" style="text-decoration: none; float: right" class="">forgotten password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+                    </form>
+
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                    <span>{{ message }}</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">x</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                </div>
+                <div class="modal-footer">
+                    <p style="float:left">Don't have an account</p>
+                    <button type="Submit" class="btn btn-primary">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+          <!-- Modal for signup-->
+  <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Sign Up  Here</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/register" method="post">
+                <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">First Name:</label>
+                    <input type="text" class="form-control" id="firstname" placeholder="Enter Your First Name" name="firstname" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">Last Name:</label>
+                    <input type="text" class="form-control" id="lastname" placeholder="Enter Your Last Name" name="lastname" required>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="phone" class="form-label">phone:</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" name="phone" required>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="gender" class="form-label">Gender:</label>
+                    <select class="" name="gender" id="gender" >
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="pwd" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="pwd" class="form-label">Confirm Password:</label>
+                    <input type="password" class="form-control" id="pwd2" placeholder="Enter password" name="pswd2" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="agree"> I agree to the terms and conditions
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+              </form>
+        </div>
+        <div class="modal-footer">
+            <p style="float:left">Already have an account</p>
+            <button type="Submit" class="btn btn-primary">Sign In</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/afrocentricjs.js"></script>
+    
+    <script type="text/javascript" language="javascript">
+
+        function soldout(){
+
+            sold = document.getElementById('slots').innerHTML
+            slot = document.getElementsByClassName('slotbtn').innerHTML
+
+            if(sold = 0){
+                slot.innerHTML = "Sold Out"
+                slot.className = "link-danger"
+                slot.href = "#"
+            };
+        }
+        soldout();
+
+    </script>
+
+
+</body>
+</html>

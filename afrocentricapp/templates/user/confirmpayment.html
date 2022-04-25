@@ -1,0 +1,47 @@
+{% extends 'user/layout.html' %}
+
+{% block pagecontent %}
+
+         <!-- Image element - background image for the section in the line below -->
+    <header class="container-fluid">
+            <div class="row px-0" style="border:1px solid green; overflow: hidden; position: relative;">
+                <div class="col-md bg-image-full-tour px-0">
+                    <div style="height: 150px; background-color: rgba(46, 46, 54, 0.7);color:white; width: 100%;" class="px-0">
+                        <h2 class="pt-5" align="center">Confirm Payment</h2>
+                    </div>
+                </div>
+            </div>
+    </header>
+
+    <section class="container-fluid">
+        <div class="row mx-5 py-5 text-center">
+            <form action="/booktour/confirmpayment" method="post" class="card-body cardbody-color p-lg-5" id="paymentForm" >
+                <div class="col-12 mb-3">
+                    <p>Email Address: {{bookdeets.tourbooking_customer_email}} </p>
+                </div>
+                <div class="col-12 mb-3">
+                    <p>Status: {{bookdeets.tourbooking_status}} </p>
+                </div>
+                <div class="col-12 mb-3">
+                    <p>First Name: {{bookdeets.tourbooking_fname}} </p>
+                </div>
+                <div class="col-12 mb-3">
+                    <p>Last Name: {{bookdeets.tourbooking_lname}} </p>
+                </div>
+                <div class="col-12 mb-3">
+                    <p>Booking Reference: {{bookdeets.tourbooking_ref}} </p>
+                </div>
+                <div class="col-12 mb-3">
+                    <p>Tour Amount: {{bookdeets.tourbooking_amount}} </p>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto py-2">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token()}}">
+                    <button class="btn btn-primary" type="submit">Confirm payment</button>
+                </div>
+            </form>
+        </div>
+    </section>   
+
+    
+    
+{% endblock pagecontent %}

@@ -1,0 +1,98 @@
+{% extends 'user/layout.html' %}
+
+{% block pagecontent %}
+
+         <!-- Image element - background image for the section in the line below -->
+    <header class="container-fluid">
+            <div class="row px-0" style="border:1px solid green; overflow: hidden; position: relative;">
+                <div class="col-md bg-image-full-tour px-0">
+                    <div style="height: 150px; background-color: rgba(46, 46, 54, 0.7);color:white; width: 100%;" class="px-0">
+                        <h2 class="pt-5" align="center">Book Your Tour Pacakge With Us!</h2>
+                    </div>
+                </div>
+            </div>
+    </header>
+
+    <section class="container-fluid">
+        <div class="row justify-content-center">
+        <div class="col-lg-3 py-5 px-3" style="border:2px solid black;">
+            is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+        </div>
+        <div class="col-lg-8" style="border:2px solid black;">
+            <div class="row me-lg-5 my-5">
+                {% for i in tourdeets %}
+                <div class="col-lg-12 mx-2 px-0 mb-3" id="tourpckdiv" style="border:2px solid red; border-radius:5px;">
+                    <div class="row">
+                        <div class="card-container col-8">
+                            <div class="card">
+                                <div class="img"><img src="/static/assets/img/tourpackages/{{ i.tourpackage_pics }}" style="height:350px" alt="Tour Package Flyer"/></div>
+                                <div  class="info">
+                                    <div class="row">
+                                        <div class="col-6">
+                                        {{ i.tourpackage_name }}
+                                        </div>
+                                        <div class="col-6">
+                                            {{ i.tourpackage_slots }}
+                                        </div>
+                                        <div class="col-6">
+                                        {{ i.tourpackage_price_sharing }}
+                                        </div>
+                                        <div class="col-6">
+                                        {{ i.tourpackage_price_single }}
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="/booktour/{{i.tourpackage_id}}" Class="btn btn-success mb-3">Book Tour</a>
+                                    </div> 
+                                </div>
+                            </div>    
+                        </div>
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>Tour Package Descrption</h5>
+                                    {{ i.tourpackage_desc }}
+                                </div>
+                                <div class="col-12">
+                                    <h5>Tourpackage Inlusions</h5>
+                                    {% for i in tourinclude %}
+                            
+                                    <ul>
+                                        <li>{{ i.inclusive_name }}</li>
+                                    </ul>
+
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}  
+            </div>
+        <div class="row">
+            <div class="offset-md-9 col-md-3 mx">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+            </div>
+        </div>
+    </div>
+    </div>
+        </section>   
+        
+    {% endblock pagecontent %}

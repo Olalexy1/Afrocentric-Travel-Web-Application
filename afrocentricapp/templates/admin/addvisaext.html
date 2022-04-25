@@ -1,0 +1,108 @@
+
+{% extends 'admin/layout.html' %}
+
+{% block pagecontent %}
+                <div class="col-lg-10" id="cardswrapper">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row py-3 px-3">
+                                <div class="col-lg px-3 py-3">
+                                    <div class="card" style="width:100%">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Tour Packages</h5>
+                                          <p class="card-text"><p>
+                                        </div>
+                                      </div>
+                                </div>
+
+                                <div class="col-lg px-3 py-3">
+                                    <div class="card" style="width:100%">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Add Tour Package</h5>
+                                          <p class="card-text"><p>
+                                        </div>
+                                      </div>
+                                </div>
+
+                                <div class="col-lg px-3 py-3">
+                                    <div class="card" style="width:100%;">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Modify Tour Package</h5>
+                                          <p class="card-text"></p>
+                                        </div>
+                                      </div>
+                                </div>
+                               
+                                <div class="col-lg px-3 py-3">
+                                    <div class="card" style="width:100%;">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Delete Tour Pacakage</h5>
+                                          <p class="card-text"></p>
+                                        </div>
+                                      </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="row py-3 px-3">
+                                <form method="post" action="" enctype="multipart/form-data">
+                                    <div class="col-12 mb-3 form-floating">
+                                        <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+                                        <input type="text" class="form-control" id="floatingInput" placeholder="Visa name" name="visaname">
+                                        <label for="floatingInput">Visa name</label>
+                                    </div>
+                                    <div class="col-12 mb-3 form-floating">
+                                        <input type="text" class="form-control" id="floatingInput" placeholder="Visa Category" name="category">
+                                        <label for="floatingInput">Visa Category</label>
+                                    </div>
+                                    <div class="col-12 mb-3 form-floating">
+                                        <textarea class="form-control" placeholder="Visa Requirements" id="floatingTextarea2" style="height: 100px" name="requirements"></textarea>
+                                        <label for="floatingTextarea2">Visa Requirements</label>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="formFile" class="form-label">Visa flyer</label>
+                                        <input class="form-control" type="file" id="formFile" name="visaimage" multiple/>
+                                    </div>
+                                    <div class="col-12 mb-3 form-floating">
+                                        <input type="number" class="form-control" id="floatingInput" placeholder="Visa Price" name="price">
+                                        <label for="floatingInput">Visa Price</label>
+                                    </div>
+                                    <div class="col-12 mb-3 form-floating">
+                                        <input type="text" class="form-control" id="floatingInput" placeholder="Visa Duration" name="duration">
+                                        <label for="floatingInput">Visa Duration</label>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label" for="flexDefault">Country</label>
+                                            <select id="inputCountry" class="form-select" name="country">
+                                            <option selected>Select Country</option>
+                                            {% for i in countrydeets %}
+                                            <option value='{{i.country_id}}' >{{i.country_name}}</option>
+                                            {% endfor %}
+                                            </select>
+                                    </div>
+                                    <div class="d-grid gap-2 col-6 mx-auto py-2">
+                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                    </div>  
+                                </form>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-lg-12">
+                            <div class="row py-3">
+                                <div class="col-lg-12 px-3 py-3"></div>
+                                <div class="col-lg-12 px-3 py-3"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock pagecontent %}

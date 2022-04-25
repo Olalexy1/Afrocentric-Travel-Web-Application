@@ -1,0 +1,53 @@
+{% extends 'user/layout.html' %}
+
+{% block pagecontent %}
+
+         <!-- Image element - background image for the section in the line below -->
+    <header class="container-fluid">
+            <div class="row px-0" style="border:1px solid green; overflow: hidden; position: relative;">
+                <div class="col-md bg-image-full-tour px-0">
+                    <div style="height: 150px; background-color: rgba(46, 46, 54, 0.7);color:white; width: 100%;" class="px-0">
+                        <h2 class="pt-5" align="center"><strong>Submit Review</strong></h2>
+                    </div>
+                </div>
+            </div>
+    </header>
+
+    <section class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-6 py-2">
+                <form  action="" method="post">
+                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+                    <div class="form-floating form-group mb-3">
+                        <input type="text" class="form-control" id="fullname" placeholder="Enter Fullname" name="fullname" required>
+                        <label for="fullname">Full Name</label>
+                    </div>
+                    <div class="form-floating form-group mb-3">
+                        <input type="email" class="form-control" id="" placeholder="name@example.com" name="email"required>
+                        <label for="email">Email Address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="ratings">
+                            <option selected>Choose Stay Type</option>
+                            <option >Select Rating</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <label for="Formselect" class="form-label">Select Rating</label>
+                    </div>
+                    <div class="form-floating form-group mb-3">
+                        <textarea class="form-control" rows="5" style="height: 210px" placeholder="Message" id="inquiry" name="message" required></textarea>
+                        <label for="message">Enter Message</label>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary form-control" type="submit">Send Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+        
+  {% endblock pagecontent %}

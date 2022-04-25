@@ -1,0 +1,69 @@
+{% extends 'user/layout.html' %}
+
+{% block pagecontent %}
+
+         <!-- Image element - background image for the section in the line below -->
+    <header class="container-fluid">
+            <div class="row px-0" style="border:1px solid green; overflow: hidden; position: relative;">
+                <div class="col-md bg-image-full-tour px-0">
+                    <div style="height: 150px; background-color: rgba(46, 46, 54, 0.7);color:white; width: 100%;" class="px-0">
+                        <h2 class="pt-5" align="center">Contact Us</h2>
+                    </div>
+                </div>
+            </div>
+    </header>
+
+    <section class="container-fluid">
+        <div class="row px-sm-5 py-5"> 
+            <h2 class="pt-5" align="center"><strong>Contact Us</strong></h2>    
+            <div class="col-lg-4">
+                <div class="contactus"><i class="fa-solid fa-phone fa-3x"></i></div>
+                <div class="my-3"><p align="center"><strong>08188394639 <br> 07053755127</strong></p></div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contactus"><i class="fa-solid fa-envelope fa-3x"></i></div>
+                <div class="my-3"><p align="center"><strong>afrocentrictours@gmail.com <br> ajayiolalekan729@gmail.com</strong></p></div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contactus"><i class="fa-solid fa-map-pin fa-3x"></i></div>
+                <div class="my-3"><p align="center"><strong>12 Ilarogun close, off saibu Lawal Street, Cole, Surulere</strong></p></div>
+            </div>
+         </div> 
+    </section>  
+
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 py-2">
+                <form  action="" method="post">
+                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+                    <div class="form-floating form-group mb-3">
+                        <input type="text" class="form-control" id="fullname" placeholder="Enter Fullname" name="fullname" required>
+                        <label for="fullname">Full Name</label>
+                    </div>
+                    <div class="form-floating form-group mb-3">
+                        <input type="email" class="form-control" id="" placeholder="name@example.com" name="email"required>
+                        <label for="email">Email Address</label>
+                    </div>
+                    <div class="form-floating form-group mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="Enter Message subject" name="subject">
+                        <label for="subject">Enter Message Subject</label>
+                    </div>
+                    <div class="form-floating form-group mb-3">
+                        <textarea class="form-control" rows="5" style="height: 210px" placeholder="Message" id="inquiry" name="message" required></textarea>
+                        <label for="message">Enter Message</label>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary form-control" type="submit">Send Mesage</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 py-2">
+                <div class="ratio ratio-4x3">
+					<!--Google Map Link-->
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.0896478156565!2d3.341601214296918!3d6.510336225123566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8c269dd3d0c1%3A0xaff2cc3f06c7b3cb!2s12%20Ilarogun%20Cl%2C%20Surulere%20100001%2C%20Lagos!5e0!3m2!1sen!2sng!4v1642366114391!5m2!1sen!2sng"  style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+					</div>
+            </div>
+        </div>
+    </section>
+        
+  {% endblock pagecontent %}
