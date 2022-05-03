@@ -19,6 +19,14 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/static/assets/favicon_io/favicon-16x16.png">
 	<link rel="manifest" href="/static/assets/favicon_io/site.webmanifest">
 
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet"> 
+
+    <!--Sweeet Alert-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 	<style type="text/css">
 		footer {
             position: relative;
@@ -60,7 +68,7 @@
 
             <div id="navicons" class="mx-3 px-3">
                 
-                <span><a href="http://" target="_blank" class="" style="text-decoration:none"> Don't have an Admin Acoount yet? Contact the Super Admin</a></span> &nbsp; &nbsp;
+                <span><a href="#" target="_blank" class="" style="text-decoration:none"> Send mail to create admin account </a></span> &nbsp; &nbsp;
 
             </div>
             {% endif %}
@@ -73,27 +81,7 @@
                 <div class="col-lg-7">
                     <div class="row">
                         <div class="col-lg-12 col-md mt-2">
-                            <!-- Flash alerts -->                
-                            {% with messages = get_flashed_messages(with_categories=true) %}
-                            {% if messages %}
-                                <ul class=flashes>
-                                {% for category, message in messages %}
-                                <!-- <li class="{{ category }}">{{ message }}</li> -->
-                                
-                                <script type="text/javascript">
-                                    swal({
-                                            title: "{{message}}",
-                                            text: "",
-                                            icon: "{{category}}",
-                                            button: "Close",
-                                            closeOnClickOutside: false,
-                                            });
-                                </script>
-
-                                {% endfor %}
-                                </ul>
-                            {% endif %}
-                            {% endwith %}
+                           
                         </div>
                     </div>
                 </div>
@@ -133,6 +121,28 @@
             </div>
             
         </footer>
+
+         <!-- Flash alerts -->                
+         {% with messages = get_flashed_messages(with_categories=true) %}
+         {% if messages %}
+             <ul class=flashes>
+             {% for category, message in messages %}
+             <!-- <li class="{{ category }}">{{ message }}</li> -->
+             
+             <script type="text/javascript">
+                 swal({
+                         title: "{{message}}",
+                         text: "",
+                         icon: "{{category}}",
+                         button: "Close",
+                         closeOnClickOutside: false,
+                         });
+             </script>
+
+             {% endfor %}
+             </ul>
+         {% endif %}
+         {% endwith %}
 <!--Jquery-->
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 

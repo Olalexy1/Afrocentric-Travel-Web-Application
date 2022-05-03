@@ -19,6 +19,14 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/static/assets/favicon_io/favicon-16x16.png">
 	<link rel="manifest" href="/static/assets/favicon_io/site.webmanifest">
 
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet"> 
+
+    <!--Sweeet Alert-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 	<style type="text/css">
 		
 	</style>
@@ -42,11 +50,11 @@
                 
                 <span>Hello, {{ admindeets.admin_fname }} </span> &nbsp; &nbsp;
 
-                <span><a href="http://" target="_blank" class=""><i class="fa-solid fa-user" style="color: black"></i></a></span> &nbsp; &nbsp;
+                <span><a href="/admin/dashboard" target="_target" class=""><i class="fa-solid fa-user" style="color: black"></i></a></span> &nbsp; &nbsp;
 
-                <span><a href="http://" target="_blank" class=""><i class="fa-solid fa-envelope" style="color: black;"></i></a></span> &nbsp; &nbsp;
+                <span><a href="http://" target="_target" class=""><i class="fa-solid fa-envelope" style="color: black;"></i></a></span> &nbsp; &nbsp;
                 
-                <a type="button" class="btn btn-outline-light" href="/admin/logout" target="_blank" class=""><i class="fa-solid fa-right-from-bracket"></i> &nbsp; Logout</a>
+                <a type="button" class="btn btn-outline-light" href="/admin/logout" target="_self" class=""><i class="fa-solid fa-right-from-bracket"></i> &nbsp; Logout</a>
 
             </div>
 

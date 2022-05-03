@@ -41,16 +41,22 @@ def register():
         lastname = request.form.get('lastname')
         phone = request.form.get('phone')
         gender = request.form.get('gender')
+        
+        userdeets2 = userdeets = Customer.query.filter(Customer.customer_email==email).first()
+        
         #validate
         if email == '' or pswd1 == '' or firstname == '' or lastname == '' or pswd2 == '' or gender == '':
-            flash('Registration failed, kindly fill the reqiured fields', 'warning')
+            flash('Registration failed, kindly fill the required fields', 'warning')
+            return redirect ('/')
+        elif userdeets2:
+            flash('Email already exists', 'warning')
             return redirect ('/')
         elif pswd1 != pswd2:
             flash('Kindly ensure that the passwords match', 'warning')
             return redirect ('/')
         else:
             formated = generate_password_hash(pswd1)
-            flash('Registration sucessful', 'success')
+            flash('Registration successful', 'success')
             profile = Customer(customer_email = email, customer_pword = formated, customer_fname = firstname, customer_lname = lastname, customer_phone = phone, customer_gender = gender)
             db.session.add(profile)
             db.session.commit()
@@ -76,15 +82,19 @@ def login():
             session['loggedin'] = userdeets.customer_id
             return redirect ('/')
         else:
-            flash('Invalid Credentials', 'warning')
+            flash('Invalid login credentials', 'warning')
             return redirect ('/')
 
 
 
 @app.route('/logout')
 def logout():
-    session.pop('loggedin')
-    return redirect ('/')
+    user = session.get('loggedin')
+    if user == None:
+        return redirect ('/')
+    else:
+        session.pop('loggedin')
+        return redirect ('/')
 
 
 @app.route('/request', methods=['GET','POST'])
