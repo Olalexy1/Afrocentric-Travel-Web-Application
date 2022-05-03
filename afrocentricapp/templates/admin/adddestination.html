@@ -1,0 +1,103 @@
+{% extends 'admin/layout.html' %}
+
+{% block pagecontent %}
+<div class="col-lg-10" id="cardswrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row py-3 px-3">
+                <div class="col-lg px-3 py-3">
+                    <div class="card" style="width:100%">
+                        <div class="card-body">
+                          <h5 class="card-title">Tour Packages</h5>
+                          <p class="card-text"><p>
+                        </div>
+                      </div>
+                </div>
+
+                <div class="col-lg px-3 py-3">
+                    <div class="card" style="width:100%">
+                        <div class="card-body">
+                          <h5 class="card-title">Add Tour Package</h5>
+                          <p class="card-text"><p>
+                        </div>
+                      </div>
+                </div>
+
+                <div class="col-lg px-3 py-3">
+                    <div class="card" style="width:100%;">
+                        <div class="card-body">
+                          <h5 class="card-title">Modify Tour Package</h5>
+                          <p class="card-text"></p>
+                        </div>
+                      </div>
+                </div>
+               
+                <div class="col-lg px-3 py-3">
+                    <div class="card" style="width:100%;">
+                        <div class="card-body">
+                          <h5 class="card-title">Delete Tour Pacakage</h5>
+                          <p class="card-text"></p>
+                        </div>
+                      </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="row py-3 px-3">
+               
+                <form action="" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+
+                    <div class="row px-3">
+                        <div class="col-lg col-md">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Destination City" name="destination" required>
+                                <label for="floatingInput">Enter Destination</label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg col-md">
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="country" required>
+                                <option selected>Select Country</option>
+                                {% for i in countrydeets %}
+                                <option value='{{i.country_id}}' >{{i.country_nicename}}</option>
+                                {% endfor %}
+                                </select>
+                                <label for="floatingSelect">Country</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="d-grid col-6 mx-auto py-2">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                      </div>
+                </form>
+                
+            </div>
+        </div>
+
+        
+        <div class="col-lg-12">
+            <div class="row py-3">
+                <div class="col-lg-12 px-3 py-3"></div>
+                <div class="col-lg-12 px-3 py-3"></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+    
+        
+
+          
+        
+{% endblock pagecontent %}
+
+        

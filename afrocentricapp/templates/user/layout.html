@@ -7,6 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Afrocentric Home</title>
 
+    <meta name="description" content="Afro-centric Tours as a brand seeks to promote the “Afro-Centric Experience” to the world, which is a fusion of Tours of beautiful and magnificent African destinations, exploring the food, fashion, African arts and lifestyle"/>
+	<meta name="author" content="Ajayi Olalekan"/>
+	<meta name="keywords" content="Travel and Tour Company In Lagos, Tour packages, Affrodable tour pacakages, Dubai Tour Packages, Travel destinations, Travel deals"/>
+		
+    <meta property="og:title" content="Home Page"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="http://ajayiolalekan.com/"/>
+    <meta property="og:site_name" content="Afrocentric Tours"/>
+    <meta property="og:image" content="/static/assets/img/media/AfrocentricLogo1.png"/>
+    <meta property="og:image:width" content="200"/>
+    <meta property="og:image:height" content="200"/>
+
     <!--css styling & Animation sheet-->
 	<link href="/static/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 	<link href="/static/assets/animate.css-main/animate.css" rel="stylesheet" type="text/css"/>
@@ -19,11 +31,19 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/static/assets/favicon_io/favicon-16x16.png">
 	<link rel="manifest" href="/static/assets/favicon_io/site.webmanifest">
 
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora&display=swap" rel="stylesheet"> 
+
+    <!--Sweeet Alert-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 	<style type="text/css">
 		
 	</style>
 </head>
-<body>
+<body onload="soldOut()">
     <header>
         <div class="container-fluid">
             <div id="headtop" class="row">
@@ -33,7 +53,7 @@
                 </div>
                 <div id="socialmediadiv" class="col-md-6">
                     <span><a href="http://" target="_blank" class=""><i class="fa-solid fa-envelope" style="color: white;"></i></a></span> &nbsp; &nbsp;
-                    <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-instagram" style="color: white"></i></a></span> &nbsp; &nbsp;
+                    <span><a href="https://www.instagram.com/afrocentric_tours/" target="_blank" class=""><i class="fa-brands fa-instagram" style="color: white"></i></a></span> &nbsp; &nbsp;
                     <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-facebook" style="color: white"></i></a></span> &nbsp; &nbsp;
                     <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-twitter" style="color: white"></i></a></span> &nbsp; &nbsp;
                     <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-youtube" style="color: white"></i></a></span> &nbsp; &nbsp;
@@ -43,7 +63,7 @@
         </div>
     </header>
     <header>
-        <nav class="navbar navbar-expand-lg sticky-top">
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid mx-lg-3">
                 <a class="navbar-brand" href="/">
                     <img src="/static/assets/img/media/AfrocentricLogo1.png" alt="brandlogo" width="150" class="d-inline-block align-text-top">
@@ -72,14 +92,9 @@
                         Destinations
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Dubai</a></li>
-                            <li><a class="dropdown-item" href="#">South Africa</a></li>
-                            <li><a class="dropdown-item" href="#">Seychelles</a></li>
-                            <li><a class="dropdown-item" href="#">Nigeria</a></li>
-                            <li><a class="dropdown-item" href="#">Morocco</a></li>
-                            <li><a class="dropdown-item" href="#">Egypt</a></li>
-                            <li><a class="dropdown-item" href="#">Kenya</a></li>
-                            <li><a class="dropdown-item" href="#">More</a></li>
+                            {% for i in destdeets %}
+                            <li><a class="dropdown-item" href="#">{{ i.destination_location }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
         
@@ -154,7 +169,7 @@
                         <p><a href="http://" target="_blank" class="">FAQs</a></p>
                         <p><a href="http://" target="_blank" class="">Privacy Policy</a></p>
                         <p><a href="http://" target="_blank" class="">Terms and Condition</a></p>
-                        <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-instagram fa-1x" style="color: white"></i></a></span>
+                        <span><a href="https://www.instagram.com/afrocentric_tours/" target="_blank" class=""><i class="fa-brands fa-instagram fa-1x" style="color: white"></i></a></span>
                         &nbsp; &nbsp; <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-facebook fa-1x" style="color: white"></i></a></span>
                         &nbsp; &nbsp; <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-twitter fa-1x" style="color: white"></i></a></span>
                         &nbsp; &nbsp; <span><a href="http://" target="_blank" class=""><i class="fa-brands fa-youtube fa-1x" style="color: white"></i></a></span>
@@ -164,8 +179,8 @@
                         <h5>Quick Links</h5>
                         <p><a href="http://" target="_blank" class="">Hot Deals</a></p>
                         <p><a href="http://" target="_blank" class="">Popular Tours</a></p>
-                        <p><a href="http://" target="_blank" class="">Design your Trip</a></p>
-                        <p><a href="http://" target="_blank" class="">All Tour Pacakges</a></p>
+                        <p><a href="/request" target="_blank" class="">Design your Trip</a></p>
+                        <p><a href="/tourpackage" target="_blank" class="">All Tour Packages</a></p>
                         <p><a href="http://" target="_blank" class="">Popular Destinations</a></p>
                         <p><a href="/reviews" target="_blank" class="">Submit Review</a></p>
                     </div>
@@ -179,8 +194,9 @@
                                         <label style="color:black" for="email">Enter Email address</label>
                                     </div>
                                     <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="checked" required>
-                                        <label class="form-check-label" for="flexCheckDefault">I agree with the terms and condition</label>
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" name="agree" required> I agree to the <a href="#" target="_blank" class="" style="text-decoration: none;"><b>terms and conditions.</b></a>
+                                        </label>
                                     </div>
                                     <div class="form-group">
                                         <button class="btn btn-primary form-control" type="submit">Subscribe</button>
@@ -201,13 +217,13 @@
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Login Here</h5>
+                <h5 class="modal-title" id="staticBackdropLabel"><strong>Login Here</strong></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="/login" method="post">
                         <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
-                        <div class="mb-3 mt-3">
+                        <div class="mb-3 mt-0">
                         <label for="email" class="form-label">Email:</label>
                         <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
                         </div>
@@ -219,39 +235,26 @@
                         <label class="form-check-label">
                             <input class="form-check-input" type="checkbox" name="remember"> Remember me
                         </label> &nbsp; &nbsp; &nbsp; &nbsp;
-                        <a href="http://" target="_blank" style="text-decoration: none; float: right" class="">forgotten password?</a>
+                        <a href="#" target="_blank" style="text-decoration: none; float: right" class="">forgotten password?</a>
                         </div>
                         <button type="submit" class="btn btn-primary">Sign In</button>
                     </form>
-
-                        {% with messages = get_flashed_messages(with_categories=true) %}
-                        {% if messages %}
-                            {% for category, message in messages %}
-                                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                                    <span>{{ message }}</span>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">x</span>
-                                    </button>
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                        {% endwith %}
                 </div>
                 <div class="modal-footer">
-                    <p style="float:left">Don't have an account</p>
-                    <button type="Submit" class="btn btn-primary">Sign Up</button>
+                    <p style="float:left">Don't have an account? </p>
+                    <button type="Submit" class="btn btn-primary" href="#staticBackdrop2" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Sign Up</button>
                     </div>
                 </div>
             </div>
             </div>
         </div>
 
-          <!-- Modal for signup-->
+<!-- Modal for signup-->
   <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Sign Up  Here</h5>
+          <h5 class="modal-title" id="staticBackdropLabel"><strong>Sign Up Here</strong></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -270,8 +273,8 @@
                     <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
                 </div>
                 <div class="mb-3 mt-3">
-                    <label for="phone" class="form-label">phone:</label>
-                    <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" name="phone" required>
+                    <label for="phone" class="form-label">Phone:</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" pattern="[0-9]{11}" name="phone" required>
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="gender" class="form-label">Gender:</label>
@@ -282,50 +285,109 @@
                 </div>
                 <div class="mb-3">
                     <label for="pwd" class="form-label">Password:</label>
-                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd1" required>
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                 </div>
                 <div class="mb-3">
                     <label for="pwd" class="form-label">Confirm Password:</label>
-                    <input type="password" class="form-control" id="pwd2" placeholder="Enter password" name="pswd2" required>
+                    <input type="password" class="form-control" id="pwd2" placeholder="Enter password" name="pswd2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="agree"> I agree to the terms and conditions
+                        <input class="form-check-input" type="checkbox" name="agree" required> I agree to the <a href="#" target="_blank" class="" style="text-decoration: none;">terms and conditions.</a>
                     </label>
                 </div>
                 <button type="submit" class="btn btn-primary">Sign Up</button>
               </form>
         </div>
         <div class="modal-footer">
-            <p style="float:left">Already have an account</p>
-            <button type="Submit" class="btn btn-primary">Sign In</button>
+            <p style="float:left">Already have an account?</p>
+            <a href="#staticBackdrop1" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" Class="btn btn-success mb-2">Sign In</a>
             </div>
         </div>
       </div>
     </div>
   </div>
 
+    <!-- Flash alerts -->                
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for category, message in messages %}
+        <!-- <li class="{{ category }}">{{ message }}</li> -->
+        
+        <script type="text/javascript">
+            swal({
+                    title: "{{message}}",
+                    text: "",
+                    icon: "{{category}}",
+                    button: "Close",
+                    closeOnClickOutside: false,
+                    });
+        </script>
 
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+    
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" src="/static/assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/js/afrocentricjs.js"></script>
-    
-    <script type="text/javascript" language="javascript">
 
-        function soldout(){
 
-            sold = document.getElementById('slots').innerHTML
-            slot = document.getElementsByClassName('slotbtn').innerHTML
+    <script type="text/javascript">
+        $(document).ready(function() {
 
-            if(sold = 0){
-                slot.innerHTML = "Sold Out"
-                slot.className = "link-danger"
-                slot.href = "#"
-            };
+
+          $('#search').on('submit',function(e){
+            var searched = $(this).val()
+            var csrf = "{{ csrf_token() }}"
+
+            data2send = {"searched":searched, "csrf_token":csrf}
+
+            $.ajax({
+              type : 'POST',
+
+              url : '/search/tourpackage/new',
+
+              data : data2send,
+
+              success: function(response){
+                console.log(response);
+
+              },
+
+              error: function(error){
+				console.log(error);
+              },
+
+            })
+            e.preventDefault();
+
+          });
+
+        });
+
+        function soldOut() { 
+            var link = document.querySelector(".slotbtn");
+            var slots = document.getElementsByClassName(".soldqty").innerHTML
+
+            if (slots == 0) {
+                link.getAttribute("href");
+                link.setAttribute("href", "#");
+            }
+            
         }
-        soldout();
+
+        soldOut()
+
 
     </script>
+    
+   
 
 
 </body>

@@ -7,8 +7,8 @@
         <div class="row px-0" style="border:1px solid green; overflow: hidden; position: relative;">
             <div class="col-md bg-image-full-tour px-0">
                 <div style="height: 150px; background-color: rgba(46, 46, 54, 0.7);color:white; width: 100%;" class="px-0">
-                    <h2 class="pt-5" align="center">Custom Package</h2>
-                    <h5 class="" align="center">Curate your dream Tour in 4 easy steps</h5>
+                    <h2 class="pt-5" align="center"><strong>Custom Package</strong></h2>
+                    <h5 class="" align="center"><strong>Curate your dream Tour in 4 easy steps</strong></h5>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                     <div class="my-3"><p align="center"> Refine and Confirm the details of the Tour Package</p></div>
                 </div>
                 <div class="col-md col-lg-12 uspdivs">
-                    <div class="my-3"><h5 align="center"> Let us know more About your trip</h5></div> 
+                    <div class="my-3"><h5 align="center"><strong>Let us know more About your trip</strong></h5></div> 
                 </div>
             </div>
         </div>
@@ -43,6 +43,142 @@
         <section class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-md-10">
+                    {% if userdeets != None: %}
+                    <form action="" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+                        <div class="row px-3">
+                            <div class="col-lg col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="First Name" name="firstname" value="{{ userdeets.customer_fname }}"  required/>
+                                    <label for="floatingInput">First Name</label>
+                                </div>
+                            </div>
+                            <div class="col-lg col-md">
+                                <div class="col-lg col-md">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="floatingInput" placeholder="Last Name" name="lastname" value="{{ userdeets.customer_lname }}" required>
+                                        <label for="floatingInput">Last Name</label>
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div>
+
+                        <div class="row px-3">
+                            <div class="col-lg col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" value="{{ userdeets.customer_email }}" required>
+                                    <label for="floatingInput">Email address</label>
+                                </div>
+                            </div>
+                            <div class="col-lg col-md">
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="country">
+                                    <option selected>Select Country</option>
+                                    {% for i in countrydeets %}
+                                    <option value='{{i.country_id}}' >{{i.country_nicename}}</option>
+                                    {% endfor %}
+                                    </select>
+                                    <label for="floatingSelect">Country</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row px-3">
+                            <div class="col-lg col-md">
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="country">
+                                    <option selected>Select Country Code</option>
+                                    {% for i in countrydeets %}
+                                    <option value='{{i.country_id}}' >{{i.country_phonecode}}  {{i.country_iso3}}</option>
+                                    {% endfor %}
+                                    </select>
+                                    <label for="floatingSelect">Country Code</label>
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="tel" class="form-control" id="floatingInput"  name="phone" placeholder="" pattern="[0-9]{11}" required/>
+                                    <label for="floatingInput">Phone Number</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row px-3">
+                            <div class="col-lg col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Origin City" name="origin" required/>
+                                    <label for="floatingInput">Origin City</label>
+                                  </div>
+                            </div>
+                            <div class="col-lg col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="Destination City" name="destination" required/>
+                                    <label for="floatingInput">Destination City</label>
+                                  </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row px-3">
+                            <div class="col-lg col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="floatingInput" placeholder="" name="departuredate" required>
+                                    <label for="floatingInput">Enter exact Depature travel date</label>
+                                </div>
+                            </div>
+                            <div class="col-lg col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="floatingInput" placeholder="" name="returndate" required>
+                                    <label for="floatingInput">Enter exact Return travel date</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row px-3">
+                            <div class="col-lg col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" placeholder="Comment" id="floatingTextarea2" style="height: 100px" name="additional"></textarea>
+                                    <label for="floatingTextarea2">Additional Information</label>
+                                  </div>
+                            </div>
+                        </div>
+
+                        <div class="row px-3">
+                            <div class="col-lg col-md px-3">
+                                <label class="form-label">Group Size: &nbsp;</label>
+                                <div class="form-check form-check-inline mb-3">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Solo">
+                                    <label class="form-check-label" for="inlineRadio1">Solo</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Couple">
+                                    <label class="form-check-label" for="inlineRadio2">Couple</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Family">
+                                    <label class="form-check-label" for="inlineRadio3">Family</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Group">
+                                    <label class="form-check-label" for="inlineRadio4">Group</label>
+                                  </div>
+                            </div>
+                            <div class="col-lg col-md px-3">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                      I agree to the <a href="http://" target="_blank" class="" style="text-decoration: none;">terms and conditions</a>
+                                    </label>
+                                  </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 col-6 mx-auto py-2">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                          </div>
+                    </form>
+                    {% else %}
                     <form action="" method="POST">
                         <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
                         <div class="row px-3">
@@ -88,7 +224,7 @@
                                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="country">
                                     <option selected>Select Country Code</option>
                                     {% for i in countrydeets %}
-                                    <option value='{{i.country_id}}' >{{i.country_phonecode}}  {{i.country_iso3}}</option>
+                                    <option value='{{i.country_id}}'>+{{i.country_phonecode}}  {{i.country_iso3}}</option>
                                     {% endfor %}
                                     </select>
                                     <label for="floatingSelect">Country Code</label>
@@ -154,7 +290,7 @@
                         </div>
 
                         <div class="row px-3">
-                            <div class="col-lg col-md px-3">
+                            <div class="col-lg-6 col-md px-3">
                                 <label class="form-label">Group Size: &nbsp;</label>
                                 <div class="form-check form-check-inline mb-3">
                                     <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Solo">
@@ -173,22 +309,21 @@
                                     <label class="form-check-label" for="inlineRadio4">Group</label>
                                   </div>
                             </div>
-                            <div class="col-lg col-md px-3">
+                            <div class="col-lg-6 col-md px-3">
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                                     <label class="form-check-label" for="flexCheckDefault">
-                                      I agree to the <a href="http://" target="_blank" class="" style="text-decoration: none;">terms and conditions</a>
+                                      I agree to the <a href="#" target="_blank" class="" style="text-decoration: none;">terms and conditions.</a>
                                     </label>
                                   </div>
                             </div>
                         </div>
 
-                        <div class="d-grid gap-2 col-6 mx-auto py-2">
+                        <div class="d-grid col-6 mx-auto py-2">
                             <button class="btn btn-primary" type="submit">Submit</button>
-                          </div>
-
-                        
+                        </div>
                     </form>
+                    {% endif %}
                 </div>
             </div>
         </section>

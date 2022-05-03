@@ -7,17 +7,118 @@
             <div class="row px-0" style="border:1px solid green; overflow: hidden; position: relative;">
                 <div class="col-md bg-image-full-tour px-0">
                     <div style="height: 150px; background-color: rgba(46, 46, 54, 0.7);color:white; width: 100%;" class="px-0">
-                        <h2 class="pt-5" align="center">Book Tour Package</h2>
+                        <h2 class="pt-5" align="center"><strong>Book Tour Package</strong></h2>
                     </div>
                 </div>
             </div>
     </header>
 
     <section class="container-fluid">
-        <div class="row mx-5 py-5">
-            <div class="col-12 mb-3">
-                <h5>{{ tourdeets.tourpackage_name }}</h5>
+        <div class="row my-lg-5 my-sm-2 mx-lg-5">
+            <div class="col-lg-12 mb-0 mt-3">
+                <a href="/tourpackage" Class="btn btn-success mb-3 slotbtn">Go Back</a>
             </div>
+            <div class="col-lg-12 mb-0">
+                <h5 class="mb-3 px-0"><b>{{ tourdeets.tourpackage_name }}</b></h5>
+            </div>     
+            
+            <div class="col-lg-12 mb-0" style="border-radius:5px; background-color: #eee;">
+                <div class="row">
+                    <div class="card-container pt-3 col-lg-7">
+                        <div>
+                            <div class="img"><img src="/static/assets/img/tourpackages/{{ tourdeets.tourpackage_pics }}" style="height:350px; width:100%;" class="img-fluid" alt="Tour Package Flyer"/></div>
+                            <div style="background-color: #eee;">
+                                <div class="row mb-2">
+                                    <div class="col-6">
+                                        <span><strong>{{ tourdeets.tourpackage_name }}</strong></span>
+                                    </div>
+                                    {% if tourdeets.tourpackage_slot == None: %}
+                                    <div class="col-6">
+                                        <span><strong>Slots Available:</strong></span>
+                                        <strong>{{ tourdeets.tourpackage_available }}</strong><span><strong> Slots</strong></span>
+                                    </div>
+                                    {% else %}
+                                    <div class="col-6">
+                                        <span><strong>Slots Available:</strong></span>
+                                        <strong>{{ tourdeets.tourpackage_slot }}</strong><span><strong> Slots</strong></span>
+                                    </div>
+                                    {% endif %}
+                                    <div class="col-6">
+                                        <span><strong>Per Sharing: NGN</strong></span>
+                                        <strong>{{"₦{:,.2f}".format(tourdeets.tourpackage_price_sharing)}}</strong>
+                                    </div>
+                                    <div class="col-6">
+                                        <span><strong>Single Stay: NGN</strong></span>
+                                        <strong>{{"₦{:,.2f}".format(tourdeets.tourpackage_price_single)}}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="col-lg-5 pt-3">
+                        <div class="row">
+                            <div class="col-12 pb-2">
+                                <h6><strong>Tour Description</strong></h6>
+                                {{ tourdeets.tourpackage_desc }}
+                            </div>
+                            
+                            <div class="col-lg-12 mb-3">
+                                <h6><strong>Tourpackage Inclusions</strong></h6>
+                                <div class="row">
+                                
+                                  {% for j in tourdeets.tourpackage_inclusives %}
+                                  <div class="col-lg-6">
+                                    <ul class="list-group">
+                                      <li class="list-group-item">{{ j.inclusive_name }}</li>
+                                    </ul>
+                                  </div>
+                                  {% endfor %}
+
+                                
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row mx-lg-5">
+                
+            </div>
+        <div class="row mx-lg-5 b-5">
+            <div class="col-12 mb-3">
+                <h6><strong>Complete Form Below to Book Tour Package:</strong></h6>
+            </div>
+            {% if userdeets != None %}
+            <form method="post" action="">
+                <div class="col-12 mb-3 form-floating">
+                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
+                    <input type="email" class="form-control" id="floatingInput" placeholder="email" name="email" value="{{ userdeets.customer_email }}"> 
+                    <label for="floatingInput">Customer Email</label>
+                </div>
+                <div class="col-12 mb-3 form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Full name" name="firstname" value="{{ userdeets.customer_fname }}">
+                    <label for="floatingInput">First Name</label>
+                </div>
+                <div class="col-12 mb-3 form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Last name" name="lastname" value="{{ userdeets.customer_lname }}">
+                    <label for="floatingInput">Last Name</label>
+                </div>
+                <div class="col-12 mb-3 form-floating">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="amount" required>
+                            <option selected>Choose Stay Type</option>
+                            <option value="{{ tourdeets.tourpackage_price_single}}">Single Stay price: {{"₦{:,.2f}".format(tourdeets.tourpackage_price_single)}}</option>
+                            <option value="{{ tourdeets.tourpackage_price_sharing }}">Sharing price: {{"₦{:,.2f}".format(tourdeets.tourpackage_price_sharing)}}</option>
+                        </select>
+                        <label for="Formselect" class="form-label"> Tour Package Amount</label>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto py-2 mb-2">
+                    <button class="btn" type="submit">Book</button>
+                </div>  
+            </form>
+
+            {% else %}
             <form method="post" action="">
                 <div class="col-12 mb-3 form-floating">
                     <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
@@ -33,17 +134,19 @@
                     <label for="floatingInput">Last Name</label>
                 </div>
                 <div class="col-12 mb-3 form-floating">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="amount">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="amount" required>
                             <option selected>Choose Stay Type</option>
-                            <option value="{{ tourdeets.tourpackage_price_single}}">Single Stay price: {{ tourdeets.tourpackage_price_single }}</option>
-                            <option value="{{ tourdeets.tourpackage_price_sharing }}">Sharing price: {{ tourdeets.tourpackage_price_sharing}}</option>
+                            <option value="{{ tourdeets.tourpackage_price_single}}">Single Stay price: {{"₦{:,.2f}".format(tourdeets.tourpackage_price_single)}}</option>
+                            <option value="{{ tourdeets.tourpackage_price_sharing }}">Sharing price: {{"₦{:,.2f}".format(tourdeets.tourpackage_price_sharing)}}</option>
                         </select>
                         <label for="Formselect" class="form-label"> Tour Package Amount</label>
                 </div>
-                <div class="d-grid gap-2 col-6 mx-auto py-2">
-                    <button class="btn btn-primary" type="submit">Book</button>
-                </div>  
+                <div class="d-grid col-6 mx-auto py-2 mb-2">
+                    <button class="btn" type="submit">Book</button>
+                </div>
+                
             </form>
+            {% endif %}
         </div>
     </section>   
         

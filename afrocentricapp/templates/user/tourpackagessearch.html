@@ -18,13 +18,13 @@
           <div class="col-lg-12 mb-0">
             <h2 class="pt-5" align="center"><strong>Book Your Tour Package With Us!</strong></h2>
         </div>
-        <div class="col-lg-3 pt-5 px-4 mb-2" style="border:0px solid black;">
+        <div class="col-lg-3 pt-5 px-4 mb-3" style="border:0px solid black;">
           <!--Search Bar-->
           
-            <form action="/search/tourpackage" method="POST">
-              <input type="hidden" value="{{csrf_token()}}" name="csrf_token">
-              <input class="form-control mb-2" type="search" placeholder="Search Tour Package" aria-label="Search" name="search" id="search">
-              <button class="btn form-control" type="submit">Search Tour Package</button>
+            <form action="/search/tourpackage" method="POST" id="search">
+                <input type="hidden" value="{{csrf_token()}}" name="csrf_token">
+                <input class="form-control mb-2" type="search" placeholder="Search Tour Package" aria-label="Search" name="search">
+                <button class="btn form-control" type="submit">Search Tour Package</button>
             </form>
           
           <h6 class="mt-4 mb-2"><strong>Search With Categories</strong></h6>
@@ -96,11 +96,12 @@
               
         </div>
         <div class="col-lg-8" style="border:0px solid black;">
-            <div class="row mt-5 mx-3">
+            <div class="row my-5 mx-3">
 
-              {% for i in tourdeets %}
+                {% if searchdeets %}
+                {% for i in searchdeets %}
 
-              <div class="col-lg-12 mx-0 px-2 mb-3" id="tourpckdiv" style="border:0px solid red; border-radius:5px; background-color: #eee;">
+                <div class="col-lg-12 mx-0 px-2 mb-3" id="tourpckdiv" style="border:0px solid red; border-radius:5px; background-color: #eee;">
                   <div class="row">
                       <div class="card-container pt-3 col-lg-7">
                           <div>
@@ -113,10 +114,10 @@
                                       <div class="col-lg-6 mt-lg-2">
                                         {% if i.tourpackage_slot == None: %}
                                           <span><strong>Packages Available:</strong></span>
-                                          <div class="soldqty"><strong>{{ i.tourpackage_available }}</strong></div><span><strong> Slots</strong></span>
+                                          <strong>{{ i.tourpackage_available }}</strong><span><strong> Slots</strong></span>
                                           {% else %}
                                           <span><strong>Packages Available:</strong></span>
-                                          <div class="soldqty"><strong>{{ i.tourpackage_slot }}</strong></div><span><strong> Slots</strong></span>
+                                          <strong>{{ i.tourpackage_slot }}</strong><span><strong> Slots</strong></span>
                                           {% endif %} 
                                       </div>
                                       <div class="col-lg-6">
@@ -128,7 +129,7 @@
                                           <strong>{{"₦{:,.2f}".format(i.tourpackage_price_single) }}</strong>
                                       </div>
                                       <div class="col-12 pt-3">
-                                      
+                                       
                                       </div>
                                   </div>
                               </div>
@@ -143,7 +144,7 @@
                               <div class="col-lg-12">
                                 <h6><strong>Tourpackage Inclusions</strong></h6>
                                 <div class="row">
-                                
+                                 
                                   {% for j in i.tourpackage_inclusives %}
                                   <div class="col-lg-6">
                                     <ul class="list-group">
@@ -151,43 +152,61 @@
                                     </ul>
                                   </div>
                                   {% endfor %}
-
-                                
+        
                                 </div>
                             </div>
 
                               <div class="d-grid col-12 mx-auto py-2">
-                                  <a href="/booktour/{{i.tourpackage_id}}" Class="btn slotbtn mb-2">Book Tour</a>
+                                  <a href="/booktour/{{i.tourpackage_id}}" Class="btn btn-success mb-2">Book Tour</a>
                               </div> 
                           </div>
                       </div>
                   </div>
-              </div>
-              {% endfor %}
+              </div> 
+
+            {% endfor %}
+
+            <div class="row justify-content-end mx-auto">
+                <div class="col-lg-9 col-md-6 buttonbox">
+                    <a class="link" href="/tourpackage" target="_blank" class="" style="color:red; text-decoration:none;">View All Destinations</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                </div>
+            </div>
+
+
+            {% else %}
+
+            <div class="col-lg-6 mt-lg-2">
+                <span><strong>No Tour Package Available for this destination</strong></span>
+            </div>
+            <div class="col-lg-6 col-md-6 buttonbox">
+                <a class="link" href="/tourpackage" target="_target" class="" style="color:red; text-decoration:none;">View All Destinations</a>
+            </div>
+
+            {% endif %}
+
 
             </div>
 
-        <div class="row justify-content-end mx-3">
-            <div class="col-lg-3 col-md-3 col-sm-6">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                          <span aria-hidden="true">&laquo;</span>
-                        </a>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-            </div>
-        </div>
+        
     </div>
     </div>
         </section>   

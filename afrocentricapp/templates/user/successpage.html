@@ -7,7 +7,7 @@
             <div class="row px-0" style="border:1px solid green; overflow: hidden; position: relative;">
                 <div class="col-md bg-image-full-tour px-0">
                     <div style="height: 150px; background-color: rgba(46, 46, 54, 0.7);color:white; width: 100%;" class="px-0">
-                        <h2 class="pt-5" align="center"><strong>Confirm Payment</strong></h2>
+                        <h2 class="pt-5" align="center"><strong>Payment Successful</strong></h2>
                     </div>
                 </div>
             </div>
@@ -15,31 +15,27 @@
 
     <section class="container-fluid">
         <div class="row mx-lg-5 py-2 text-center ">
-            <form action="/booktour/confirmpayment" method="post" class="card-body cardbody-color p-lg-5" id="paymentForm" >
+            
                 <div class="col-12 mb-3">
-                    <p><strong>Email Address</strong>: {{bookdeets.tourbooking_customer_email}} </p>
-                </div>
-                <div class="col-12 mb-3">
-                    <p><strong>Status:</strong> {{bookdeets.tourbooking_status}} </p>
+                    <p><strong>Email Address</strong>: {{update.tourbooking_customer_email}} </p>
                 </div>
                 <div class="col-12 mb-3">
-                    <p><strong>First Name:</strong> {{bookdeets.tourbooking_fname}} </p>
+                    <p><strong>Status:</strong> {{update.tourbooking_status}} </p>
                 </div>
                 <div class="col-12 mb-3">
-                    <p><strong>Last Name:</strong> {{bookdeets.tourbooking_lname}} </p>
+                    <p><strong>First Name:</strong> {{update.tourbooking_fname}} </p>
                 </div>
                 <div class="col-12 mb-3">
-                    <p><strong>Booking Reference:</strong> {{bookdeets.tourbooking_ref}} </p>
+                    <p><strong>Last Name:</strong> {{update.tourbooking_lname}} </p>
                 </div>
                 <div class="col-12 mb-3">
-                    <p><strong>Tour Package Amount:</strong> {{"₦{:,.2f}".format(bookdeets.tourbooking_amount)}} </p>
+                    <p><strong>Payment Reference:</strong> {{reference}} </p>
                 </div>
-                <div class="col-lg-6 col-md-8 mx-auto py-2">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token()}}">
-                    <button class="btn btn-primary" type="submit">Confirm Payment</button>
+                <div class="col-12 mb-3">
+                    <p><strong>Amount Paid:</strong> {{"₦{:,.2f}".format(payment.tourpackage_payment_amount)}} </p>
                 </div>
-            </form>
         </div>
+        
     </section>   
 
     

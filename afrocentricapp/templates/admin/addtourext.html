@@ -82,6 +82,15 @@
                                         <input type="number" class="form-control" id="floatingInput" placeholder="" name="slot">
                                         <label for="floatingInput">Available Slot</label>
                                     </div>
+                                    <div class="col-lg mb-3 form-floating">   
+                                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="destination" required>
+                                        <option selected>Select Destination</option>
+                                        {% for i in destdeets %}
+                                        <option value='{{ i.destination_id }}' >{{ i.destination_location }}</option>
+                                        {% endfor %}
+                                        </select>
+                                        <label for="floatingSelect">Destination</label>   
+                                    </div>
                                     <div class="col-12 mb-3">
                                        <div class="row">
                                            {% for i in inclusions %}
@@ -93,6 +102,7 @@
                                            </div>
                                            {% endfor %}  
                                        </div>
+
                                     </div>
                                     <div class="d-grid gap-2 col-6 mx-auto py-2">
                                         <button class="btn btn-primary" type="submit">Submit</button>
@@ -114,6 +124,28 @@
                 </div>
                 </div>
             </div>
+
+            <!-- Flash alerts -->                
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class=flashes>
+                {% for category, message in messages %}
+                <!-- <li class="{{ category }}">{{ message }}</li> -->
+                
+                <script type="text/javascript">
+                    swal({
+                            title: "{{message}}",
+                            text: "",
+                            icon: "{{category}}",
+                            button: "Close",
+                            closeOnClickOutside: false,
+                            });
+                </script>
+        
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
         </section>
 
 {% endblock pagecontent %}

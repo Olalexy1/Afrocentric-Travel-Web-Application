@@ -1,0 +1,90 @@
+
+{% extends 'user/layout.html' %}
+
+{% block pagecontent %}
+
+<header class="container-fluid">
+    <div class="row px-0" style="border:1px solid green; overflow: hidden; position: relative;">
+        <div class="col-md bg-image-full-tour px-0">
+            <div style="height: 150px; background-color: rgba(46, 46, 54, 0.7);color:white; width: 100%;" class="px-0">
+                <h2 class="pt-5" align="center"><strong>Booked Tours</strong></h2>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section>
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-lg-2">
+            <div class="row py-3">
+                <div class="col-lg-12 py-0">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"> <a class="nav-link" href="#">Dashboard</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="/profile"> <i class="fa-solid fa-user"></i> &nbsp; Profile Summary</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-envelope"></i> &nbsp; Messages </a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="/customer/bookings"> <i class="fa-solid fa-suitcase-rolling"></i> &nbsp; Tour Booking </a></li>
+
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-solid fa-passport"></i> &nbsp; Visa Application </a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-box"></i> &nbsp; Orders </a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-credit-card"></i> &nbsp; Payments </a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-gears"></i> &nbsp; Help and settings</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="#"> <i class="fa-solid fa-circle-question"></i> &nbsp; FAQ </a></li>
+
+                        <li class="nav-item mx-5">
+                            <a id='headerbtn' class="nav-link" href="/logout">Sign Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10" id="cardswrapper">
+            <div class="row">
+                <div class="col-lg-12 py-3">
+
+                    <div style="overflow-x:auto;">
+                        <table class="table table-dark table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Booking Date</th>
+                              <th scope="col">Booking Status</th>
+                              <th scope="col">Tourpackage Name</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              {% for i in bookdeets %}
+
+                            <tr>
+                              <th scope="row">{{ loop.index }}</th>
+                              <td>{{ i.tourbooking_date }}</td>
+                              <td>{{ i.tourbooking_status }}</td>
+                              <td>{{ i.fk_tourbooking_tourpackageid }}</td>
+                            </tr>
+
+                              {% endfor %}
+
+                          </tbody>
+                        </table>
+                      </div>
+                   
+                </div>
+
+            </div>
+
+        </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock pagecontent %}

@@ -68,14 +68,14 @@
                                   <tr>
                                     <th scope="row">{{ loop.index }}</th>
                                     <td>{{ i.tourpackage_name }}</td>
-                                    <td>{{ i.tourpackage_price_sharing }}</td>
-                                    <td>{{ i.tourpackage_price_single }}</td>
+                                    <td>{{"₦{:,.2f}".format(i.tourpackage_price_sharing) }}</td>
+                                    <td>{{"₦{:,.2f}".format(i.tourpackage_price_single) }}</td>
                                     <td>{{ i.tourpackage_desc }}</td>
                                     <td><img src="/static/assets/img/tourpackages/{{ i.tourpackage_pics }}" width="100"/></td>
                                     <td>{{ i.tourpackage_dept_date }}</td>
                                     <td>{{ i.tourpackage_rtn_date }}</td>
                                     <td>{{ i.tourpackage_slot }}</td>
-                                    <td><a href="/admin/tourpackage/modify/{{i.tourpackage_id}}" Class="btn btn-danger mb-3">Modify</a> &nbsp; <a href="/admin/tourpackage/delete/{{i.tourpackage_id}}" Class="btn btn-danger">Delete</a></td>
+                                    <td><a href="/admin/tourpackage/modify/{{i.tourpackage_id}}" Class="btn btn-danger mb-3">Modify</a> </td>
                                   </tr>
                                     {% endfor %}
                                 </tbody>

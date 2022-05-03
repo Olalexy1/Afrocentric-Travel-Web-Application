@@ -1,8 +1,7 @@
 import datetime
 from afrocentricapp import db
 
-pkg_inclusions = db.Table('pkg_inclusives', db.Column('fk_pkg_inclusive_tourpackage_id', db.Integer, db.ForeignKey('tourpackage.tourpackage_id')),
-db.Column('fk_pkg_inclusive_id', db.Integer, db.ForeignKey('inclusive.inclusive_id')))
+pkg_inclusions = db.Table('pkg_inclusives', db.Column('fk_pkg_inclusive_tourpackage_id', db.Integer, db.ForeignKey('tourpackage.tourpackage_id')), db.Column('fk_pkg_inclusive_id', db.Integer, db.ForeignKey('inclusive.inclusive_id')))
 
 
 class Admin(db.Model): 
@@ -154,7 +153,7 @@ class Tourbooking(db.Model):
 
 class Tourpackage(db.Model):
     tourpackage_id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
-    tourpackage_name= db.Column(db.String(255), nullable=False)
+    tourpackage_name = db.Column(db.String(255), nullable=False)
     tourpackage_price_sharing = db.Column(db.Float(), nullable=False)
     tourpackage_price_single =  db.Column(db.Float(), nullable=False)
     tourpackage_desc = db.Column(db.Text(), nullable=False)
@@ -178,7 +177,8 @@ class TourpackagePayment(db.Model):
     tourpackage_payment_status = db.Column(db.Enum('Successful','Failed'))
     tourpackage_payment_date = db.Column(db.DateTime(), default=datetime.datetime.utcnow())
     tourpackage_payment_method = db.Column(db.String(255), nullable=False)
-    tourpackage_payment_ref = db.Column(db.Integer(), nullable=False)
+    tourpackage_booking_ref = db.Column(db.Integer(), nullable=False)
+    tourpackage_paystack_ref = db.Column(db.String(255), nullable=False)
     tourpackage_payment_currency = db.Column(db.String(255), nullable=False)
     fk_tourpackage_payment_tourpackage_id = db.Column(db.Integer(), db.ForeignKey("tourpackage.tourpackage_id"))
     fk_tourpackage_payment_tourbooking_id = db.Column(db.Integer(), db.ForeignKey("tourbooking.tourbooking_id"))

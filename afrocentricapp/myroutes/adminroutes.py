@@ -120,6 +120,7 @@ def tourpackage():
 
 @app.route('/admin/addtourpackage', methods=['GET','POST'])
 def addtourpackage():
+    destdeets = Destination.query.all()
     admin = session.get('admin')
     if admin == None:
         return redirect('/admin/login')
@@ -127,7 +128,7 @@ def addtourpackage():
         admindeets = Admin.query.get(admin)
         if request.method =='GET':
             inclusions = Inclusive.query.all()
-            return render_template('admin/addtourext.html', inclusions= inclusions, admindeets = admindeets)
+            return render_template('admin/addtourext.html', inclusions= inclusions, admindeets = admindeets, destdeets = destdeets)
         else:
             tourname = request.form.get('tourname')
             price_share = request.form.get('price_share')
@@ -137,6 +138,7 @@ def addtourpackage():
             returndate = request.form.get('returndate')
             slot = request.form.get('slot')
             inclusives =request.form.getlist('inclusive')
+            destname = request.form.get('destination')
 
            
             pic_object = request.files.get('tourimage')
@@ -152,7 +154,7 @@ def addtourpackage():
                     save_as = str(fn)+extension[1] 
                     pic_object.save(f"afrocentricapp/static/assets/img/tourpackages/{save_as}")
                     
-                    tour = Tourpackage(tourpackage_name=tourname, tourpackage_price_sharing=price_share, tourpackage_pics=save_as, tourpackage_price_single=price_single, tourpackage_desc=tourdesc, tourpackage_dept_date=departuredate, tourpackage_rtn_date= returndate, tourpackage_available=slot)
+                    tour = Tourpackage(tourpackage_name=tourname, tourpackage_price_sharing=price_share, tourpackage_pics=save_as, tourpackage_price_single=price_single, tourpackage_desc=tourdesc, tourpackage_dept_date=departuredate, tourpackage_rtn_date= returndate, tourpackage_available=slot, fk_tourpackage_destination_id = destname)
                     db.session.add(tour)
                     db.session.commit()
 
@@ -192,26 +194,92 @@ def admin_delete(id):
 @app.route('/admin/tourpackage/modify/<int:id>', methods=['GET','POST'])
 def admin_modify(id):
     admin = session.get('admin')
+    tourdeets = Tourpackage.query.get(id)
+    destdeets = Destination.query.all()
     if admin == None:
         return redirect('/admin/login')
     else:
         if request.method == 'GET':
             admindeets = Admin.query.get(admin)
             inclusions = Inclusive.query.all()
-            tourdeets = db.session.query(Tourpackage).get(id)
-            return render_template('admin/edittourext.html',tourdeets=tourdeets, inclusions=inclusions, admindeets=admindeets)
-        else:
             tourdeets = Tourpackage.query.get(id)
+            return render_template('admin/edittourext.html',tourdeets=tourdeets, inclusions=inclusions, admindeets=admindeets, destdeets = destdeets)
+        
+        else:
+            
+            tourname = request.form.get('tourname')
+            price_share = request.form.get('price_share')
+            price_single = request.form.get('price_single')
+            tourdesc = request.form.get('tourdesc')
+            departuredate = request.form.get('departuredate')
+            returndate = request.form.get('returndate')
+            slots = request.form.get('slot')
+            pic_object = request.files.get('tourimage')
+            inclusives = request.form.getlist('inclusive')
+            destname = request.form.get('destination')
 
-            tourdeets.tourname = request.form.get('tourname')
-            tourdeets.price_share = request.form.get('price_share')
-            tourdeets.price_single = request.form.get('price_single')
-            tourdeets.tourdesc = request.form.get('tourdesc')
-            tourdeets.departuredate = request.form.get('departuredate')
-            tourdeets.returndate = request.form.get('returndate')
-            db.session.commit()
-            flash('Tour package successfully updated')
-            return redirect ('/admin/addtourpackage')
+            original_file =  pic_object.filename
+
+            if original_file !='': 
+                extension = os.path.splitext(original_file)
+                if extension[1].lower() in ['.jpg','.png']:
+                    fn = math.ceil(random.random() * 100000000)  
+                    save_as = str(fn)+extension[1] 
+                    pic_object.save(f"afrocentricapp/static/assets/img/tourpackages/{save_as}")
+
+                    tourdeets.tourpackage_name = tourname
+                    tourdeets.price_share = price_share
+                    tourdeets.price_single = price_single
+                    tourdeets.tourdesc = tourdesc
+                    tourdeets.departuredate = departuredate
+                    tourdeets.returndate = returndate
+                    tourdeets.slots = slots
+                    tourdeets.tourpackage_pics = save_as
+                    tourdeets.fk_tourpackage_destination_id = destname
+                    db.session.commit()
+
+                    for i in inclusives:
+                        include = pkg_inclusions.insert().values(fk_pkg_inclusive_tourpackage_id=tourdeets.tourpackage_id,fk_pkg_inclusive_id=i)
+                        db.session.execute(include)
+                        db.session.commit()
+                        flash('Tour package successfully updated')
+                else:
+                    flash('File Type Not Allowed')
+                    return redirect("/admin/addtourpackage")
+
+            elif original_file == "":
+
+                tourdeets = Tourpackage.query.get(id)
+
+                tourdeets.tourpackage_name = tourname
+                tourdeets.tourpackage_price_sharing = price_share
+                tourdeets.tourpackage_price_single = price_single
+                tourdeets.tourpackage_desc = tourdesc
+                tourdeets.tourpackage_dept_date = departuredate
+                tourdeets.tourpackage_rtn_date = returndate
+                tourdeets.tourpackage_available = slots
+                tourdeets.fk_tourpackage_destination_id = destname
+                db.session.commit()
+
+
+                bookinfo = db.session.execute(f"SELECT COUNT(tourbooking_status) FROM tourbooking WHERE tourbooking_status='Confirmed' AND fk_tourbooking_tourpackageid = {tourdeets.tourpackage_id}")
+
+                data = bookinfo.fetchall()
+                data2 = data[0]
+                data3 = data2[0]
+
+    
+                if data3 < tourdeets.tourpackage_available:
+                    db.session.execute(f"UPDATE tourpackage SET tourpackage_slot = (tourpackage_available - {data3}) WHERE tourpackage_id = {tourdeets.tourpackage_id}")
+                    db.session.commit()
+
+                for i in inclusives:
+                    include = pkg_inclusions.insert().values(fk_pkg_inclusive_tourpackage_id=tourdeets.tourpackage_id,fk_pkg_inclusive_id=i)
+                    db.session.execute(include)
+                    db.session.commit()
+                    flash('Tour package successfully updated')
+                return redirect ('/admin/tourpackage')    
+
 
 
 
@@ -368,7 +436,6 @@ def admin_tourpayment():
 
 
 
-
 @app.route('/admin/visa/payment')
 def admin_visapayment():
     admin = session.get('admin')
@@ -378,6 +445,7 @@ def admin_visapayment():
         admindeets = Admin.query.get(admin)
         visapaydeets = VisaPayment.query.all()
         return render_template('/admin/visapaymentext.html', visapaydeets = visapaydeets, admindeets = admindeets)
+
 
 
 @app.route('/admin/tourbooking/pending')
@@ -390,7 +458,8 @@ def booked_pending():
         query = db.session.execute(f"SELECT * FROM tourbooking WHERE tourbooking_status='Pending'")
         data = query.fetchall()
         return render_template('/admin/bookingsext.html', bookdeets = data, admindeets=admindeets)
-        
+
+
 
 @app.route('/admin/tourbooking/confirmed')
 def booked_confirmed():
@@ -403,23 +472,50 @@ def booked_confirmed():
         data = query.fetchall()
         return render_template('/admin/bookingsext.html', bookdeets = data, admindeets=admindeets)
 
-'''
-@app.route('/admin/tourbooking/clear')
-def booked_clear():
+
+
+@app.route('/admin/add/destinations', methods=['GET','POST'])
+def add_destination():
     admin = session.get('admin')
     if admin == None:
         return redirect('admin/login')
     else:
         admindeets = Admin.query.get(admin)
-        bookdeets = Tourbooking.query.all()
-        bookingdate = bookdeets.tourbooking_date
+        countrydeets = Country.query.all()
+        if request.method =='GET':
+            return render_template('admin/adddestination.html', admindeets = admindeets, countrydeets = countrydeets)
+        else:
 
-        issuedate = bookingdate   #calculate the issue datetime
-        current_date = datetime.datetime.now() #calculate the current datetime
-        diff_date = current_date - issuedate #//calculate the date difference with time also
+            destination = request.form.get('destination')
+            country = request.form.get('country')
+            state = request.form.get('state')
 
-        query = db.session.execute(f"SELECT * FROM tourbooking WHERE tourbooking_status='Confirmed' and tourbooking_date={xyz}")
-        data = query.fetchall()
+            countdeets = Country.query.filter(Country.country_id==country).first()
 
-        return render_template('/admin/bookingsext.html', bookdeets = data, admindeets=admindeets)
-'''
+            con = countdeets.country_id
+            
+
+            if destination == "":
+                flash('Please enter destination')
+                return redirect('/admin/add/destinations')
+
+            else:
+                desdeets = Destination(destination_location = destination, fk_destination_state = state, fk_destination_country = con)
+                db.session.add(desdeets)
+                db.session.commit()
+                flash('Destination Added Succesfully')
+                return redirect('/admin/destinations')  
+
+
+
+@app.route('/admin/destinations')
+def destination():
+    admin = session.get('admin')
+    if admin == None:
+        return redirect('admin/login')
+    else:
+        admindeets = Admin.query.get(admin)
+        destdeets = Destination.query.all()
+        return render_template('admin/destination.html', admindeets = admindeets, destdeets = destdeets)
+
+       

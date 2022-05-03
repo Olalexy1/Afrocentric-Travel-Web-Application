@@ -48,51 +48,81 @@
 
                         <div class="col-lg-12">
                             <div class="row py-3 px-3">
-                                <form method="post" action="{{ url_for(admin_modify)}}" enctype="multipart/form-data">
+                                <form method="post" action="{{ url_for('admin_modify', id=tourdeets.tourpackage_id )}}" enctype="multipart/form-data">
                                     <div class="col-12 mb-3 form-floating">
                                         <input type="hidden" name="csrf_token" value="{{csrf_token()}}"/>
-                                        <input type="text" class="form-control" id="floatingInput" placeholder="Tour Package name" name="tourname" value="{{ pckdeets.tourpackage_name }}" >
+                                        <input type="text" class="form-control" id="floatingInput" placeholder="Tour Package name" name="tourname" value="{{ tourdeets.tourpackage_name }}" >
                                         <label for="floatingInput">Tour Package name</label>
                                     </div>
                                     <div class="col-12 mb-3 form-floating">
-                                        <input type="number" class="form-control" id="floatingInput" placeholder="Price single" name="price_share" value="{{ pckdeets.tourpackage_price_sharing }}">
+                                        <input type="number" class="form-control" id="floatingInput" placeholder="Price single" name="price_share" value="{{ tourdeets.tourpackage_price_sharing }}">
                                         <label for="floatingInput">Price per sharing</label>
                                     </div>
                                     <div class="col-12 mb-3 form-floating">
-                                        <input type="number" class="form-control" id="floatingInput" placeholder="Price single" name="price_single" value="{{ pckdeets.tourpackage_price_single }}">
+                                        <input type="number" class="form-control" id="floatingInput" placeholder="Price single" name="price_single" value="{{ tourdeets.tourpackage_price_single }}">
                                         <label for="floatingInput">Price per single</label>
                                     </div>
                                     <div class="col-12 mb-3 form-floating">
-                                        <textarea class="form-control" placeholder="Comment" id="floatingTextarea2" style="height: 100px" name="tourdesc" value="{{ pckdeets.tourpackage_desc }}"></textarea>
+                                        <textarea class="form-control" placeholder="Comment" id="floatingTextarea2" style="height: 100px" name="tourdesc">{{ tourdeets.tourpackage_desc }}</textarea>
                                         <label for="floatingTextarea2">Tour Description</label>
                                     </div>
+                                    <div class="col-lg-6 col-md-12 img"><img src="/static/assets/img/tourpackages/{{ tourdeets.tourpackage_pics }}" style="height:auto; width:100%;" class="img-fluid" alt="Tour Package Flyer"/></div>
                                     <div class="col-12 mb-3">
                                         <label for="formFile" class="form-label">Tour Package flyer</label>
-                                        <input class="form-control" type="file" id="formFile" name="tourimage" value="{{ pckdeets.tourpackage_pics }}" multiple/>
+                                        <input class="form-control" type="file" id="formFile" value="{{ tourdeets.tourpackage_pics }}" name="tourimage" multiple/>
                                     </div>
-                                    <div class="col-12 mb-3 form-floating">
-                                        <input type="date" class="form-control" id="floatingInput" placeholder="" name="departuredate" value="{{ pckdeets.tourpackage_dept_date }}">
+                                    <div class="col-lg-12 mb-3 form-floating">
+                                        <input type="date" class="form-control" id="floatingInput" placeholder="" name="departuredate" value="{{ tourdeets.tourpackage_dept_date }}">
                                         <label for="floatingInput">Depature travel date</label>
                                     </div> 
-                                    <div class="col-12 mb-3 form-floating">
-                                        <input type="date" class="form-control" id="floatingInput" placeholder="" name="returndate" value="{{ pckdeets.tourpackage_rtn_date }}">
+                                    <div class="col-lg-12 mb-3 form-floating">
+                                        <input type="date" class="form-control" id="floatingInput" placeholder="" name="returndate" value="{{ tourdeets.tourpackage_rtn_date }}">
                                         <label for="floatingInput">Return travel date</label>
+                                    </div>
+                                    <div class="col-lg-12 mb-3 form-floating">
+                                        <input type="number" class="form-control" id="floatingInput" value="{{ tourdeets.tourpackage_available }}" placeholder="" name="slot">
+                                        <label for="floatingInput">Slot</label>
+                                    </div>
+                                    <div class="col-lg-12 mb-3 form-floating">
+                                        <input type="number" class="form-control" id="floatingInput" value="{{ tourdeets.tourpackage_slot }}" placeholder="" name="slot" readonly>
+                                        <label for="floatingInput">Available Slot</label>
+                                    </div>
+                                    <div class="col-lg mb-3 form-floating">   
+                                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="destination" required>
+                                        {% for i in destdeets %}
+                                        {% if i == destdeets.destination_tourpackage %}
+                                        <option value='{{ i.destination_id }}'selected>{{ i.destination_location }}</option>
+                                        {% else %}
+                                        <option value='{{ i.destination_id }}'>{{ i.destination_location }}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                        </select>
+                                        <label for="floatingSelect">Destination</label>   
                                     </div>
                                     <div class="col-12 mb-3">
                                        <div class="row">
-                                           {% for i in inclusions %}
-                                           {% if i.inclusive_id == pckdeets.tourpackage_inclusives %}
+
+                                        {% for i in inclusions %} 
+                                        
                                            <div class="col-lg-4">
                                                 <div class="form-check">
+                                                    {% if i in tourdeets.tourpackage_inclusives %}
+                                                    <input class="form-check-input" type="checkbox" value="{{ i.inclusive_id }}" id="flexCheckDefault" name="inclusive" checked>
+                                                    <label class="form-check-label" for="flexCheckDefault">{{ i.inclusive_name }}</label>
+                                                    {% else %}
                                                     <input class="form-check-input" type="checkbox" value="{{ i.inclusive_id }}" id="flexCheckDefault" name="inclusive">
                                                     <label class="form-check-label" for="flexCheckDefault">{{ i.inclusive_name }}</label>
+                                                    {% endif %}
                                                 </div>
                                            </div>
-                                           {% endif %}
-                                           {% endfor %}  
+                                      
+                                        {% endfor %}
+                                        
+                                        
                                        </div>
                                        
                                     </div>
+
                                     <div class="d-grid gap-2 col-6 mx-auto py-2">
                                         <button class="btn btn-primary" type="submit">Submit</button>
                                     </div>  
@@ -113,6 +143,28 @@
                 </div>
                 </div>
             </div>
+
+            <!-- Flash alerts -->                
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class=flashes>
+                {% for category, message in messages %}
+                <!-- <li class="{{ category }}">{{ message }}</li> -->
+                
+                <script type="text/javascript">
+                    swal({
+                            title: "{{message}}",
+                            text: "",
+                            icon: "{{category}}",
+                            button: "Close",
+                            closeOnClickOutside: false,
+                            });
+                </script>
+        
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
         </section>
 
 {% endblock pagecontent %}

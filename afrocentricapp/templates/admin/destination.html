@@ -52,28 +52,19 @@
                                 <thead>
                                   <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Tour booking id</th>
-                                    <th scope="col">Booking Date</th>
-                                    <th scope="col">Booking email</th>
-                                    <th scope="col">Booking Status</th>
-                                    <th scope="col">Booking Firstname</th>
-                                    <th scope="col">Booking Lastname</th>
-                                    <th scope="col">Tourpackage Name</th>
-                                    <th scope="col">Customer id</th>
+                                    <th scope="col">Destination id</th>
+                                    <th scope="col">Destination</th>
+                                    <th scope="col">Destination Country</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                    {% for i in bookdeets %}
+                                    {% for i in destdeets %}
                                   <tr>
                                     <th scope="row">{{ loop.index }}</th>
-                                    <td>{{ i.tourbooking_id }}</td>
-                                    <td>{{ i.tourbooking_date }}</td>
-                                    <td>{{ i.tourbooking_customer_email }}</td>
-                                    <td>{{ i.tourbooking_status }}</td>
-                                    <td>{{ i.tourbooking_fname }}</td>
-                                    <td>{{ i.tourbooking_lname }}</td>
-                                    <td>{{ i.fk_tourbooking_tourpackageid }}</td>
-                                    <td>{{ i.fk_tourbooking_customerid }}</td>
+                                    <td>{{ i.destination_id }}</td>
+                                    <td>{{ i.destination_location }}</td>
+                                    <td>{{ i.fk_destination_country }}</td>
+                                    
                                   </tr>
                                     {% endfor %}
 
@@ -81,7 +72,8 @@
                               </table>
                             </div>
                         </div>
-
+                        
+                        
                         
                         <div class="col-lg-12">
                             <div class="row py-3">

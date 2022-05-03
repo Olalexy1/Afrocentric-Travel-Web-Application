@@ -125,10 +125,9 @@ section {
 #formdiv {
 	align-self: center;
 	box-sizing: border-box;
-	height: 200px;
-	margin-top: -100px;
+	margin-top: -65px;
 	z-index: 1;
-	position: sticky;
+	position: relative;
 }
 
 #formwrapper {
@@ -176,24 +175,62 @@ section {
     opacity: 1;
 }
 
+
+h1,h2,h3,h4,h5 {
+	font-family: 'Sora', sans-serif;
+}
+
+.soldqty {
+	display: inline-block;
+}
+
+
 .btn,input[type=submit]{
-	color: white !important;
-	background-color: #DB6303 !important;
+	color: black !important;
+	background-color: white !important;
 	opacity: 0.8;
+	border: 1px solid black;
+	-webkit-transition: ease-out 0.2s;
+	-moz-transition: ease-out 0.2s;
+	transition: ease-out 0.2s;
 }
 
 .prev,.next {
-	color: white !important;
-	background-color: #DB6303 !important;
+	background-color: white !important;
 }
+
+.prev i {
+	color: grey !important;
+	background-color: white !important;
+}
+
+.next i {
+	color:grey !important;
+	background-color: white !important;
+}
+
+.prev i:hover {
+	color: #DB6303 !important;
+	background-color: white !important;
+}
+
+.next i:hover {
+	color: #DB6303 !important;
+	background-color: white !important;
+}
+
 
 .btn:hover {
 	opacity: 1;
+	color: white !important;
+	background-color: #DB6303 !important;
+	border: 1px None;
 }
 
 
 input[type=submit] :hover {
 	opacity: 1;
+	border: 1px none;
 }
 
 #buttonbox1 {
@@ -237,10 +274,11 @@ input[type=submit] :hover {
 }
 
 .carousel-container{
-	width: 1200px;
+	width: 960px;
 	margin: 50px auto;
 	min-height: 200px;
 	position: relative;
+	border: 0px solid green;
 }
 
 .carousel-container .card-container{
@@ -248,13 +286,14 @@ input[type=submit] :hover {
 	height: 340px;
 	flex-shrink: 0;
 	padding-right: 15px;
+	padding-left: 0px;
 	box-sizing: border-box;
-	border: 0px solid #ccc;
+	border: 0px solid rgb(235, 73, 73);
 }
 
 .carousel-container .card-div{
 	display:flex;
-	border: 0px solid red;
+	border: 0px solid blue;
 	transition: transform 0.5s;
 }
 
@@ -282,9 +321,11 @@ input[type=submit] :hover {
   	transition: 0.3s;
 }
 
+
 .card-container .cards:hover {
 	box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.2);
-  }
+}
+
 
 .arrow button{
 	width:50px;
@@ -292,17 +333,17 @@ input[type=submit] :hover {
 	position: absolute;
 	top: 50%;
 	border-radius: 50%;
-	border: 1px solid black;
+	border: 0px solid black;
 	transform: translateY(-50%);
 	cursor: pointer;
 }
 
 .arrow .prev{
-	left: -25px;
+	left: -30px;
 }
 
 .arrow .next{
-	right: -25px;
+	right: -15px;
 }
 
 #productsdiv .productscard .card img{
@@ -347,7 +388,7 @@ input[type=submit] :hover {
 } 
 
 .img-hover-zoom:hover img {
-	transform: scale(1.5);
+	transform: scale(1.1);
 }
 
 
@@ -357,7 +398,7 @@ input[type=submit] :hover {
 */
 
 @media (min-width: 1441px) {
-	.carousel-container {width: 955px;}		
+	.carousel-container {width: 960px;}		
 }
 
   /* 
@@ -366,7 +407,7 @@ input[type=submit] :hover {
   */
 
 @media (min-width: 1025px) and (max-width: 1440px) {
-	.carousel-container {width: 955px;}
+	.carousel-container {width: 958px;}
 	.arrow .next{right: -15px;}	
 }
 
@@ -376,9 +417,9 @@ input[type=submit] :hover {
   */
   
 @media (min-width: 768px) and (max-width: 1024px) {
-	.carousel-container {width: 715px;}
+	.carousel-container {width: 720px;}
 	.arrow .next{right: -15px;}
-	#uspwrapper {margin-top: 50px;}
+	#uspwrapper {margin-top: 20px;}
 }
   
   /* 
@@ -387,9 +428,9 @@ input[type=submit] :hover {
   */
   
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-	.carousel-container {width: 715px;}
+	.carousel-container {width: 720px;}
 	.arrow .next{right: -15px;}
-	#uspwrapper {margin-top: 50px;}
+	#uspwrapper {margin-top: 20px;}
 }
   
   /* 
@@ -408,9 +449,10 @@ input[type=submit] :hover {
   
 @media (min-width: 320px) and (max-width: 480px) {
 	.carousel-container {width: 240px; }
-	.carousel-container .card-container {padding-right: 0px;}
+	.carousel-container .card-container {padding-right: 1px}
 	#carouselExampleFade .carousel-item img {height: 300px}
-	#uspwrapper {margin-top: 360px;}
+	.arrow .next{right: -25px;}
+	#uspwrapper {margin-top: 20px;}
 }
 
 
@@ -427,9 +469,26 @@ input[type=submit] :hover {
  
 
 
+.swal-text {
+	padding: 17px;
+	display: block;
+	margin: 22px;
+	text-align: center;
+	color: #61534e;
+}
 
 
-
+.swal-button {
+	background-color: #DB6303;
+    border-radius: 5px;
+    color: #fff !important;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 40px;
+    display: inline-block;
+    padding: 10px 40px;
+	text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
 
 
 #reviewcontainer {
@@ -519,7 +578,7 @@ footer {
 
 footer a {
 	text-decoration: none;
-	font-weight: bold !important;
+	font-weight: normal !important;
 	color: white;
 }
 
@@ -531,7 +590,7 @@ footer h5 {
 
 footer p {
 	text-decoration: none;
-	font-weight: bold !important;
+	font-weight: normal !important;
 	color: white;
 }
 
