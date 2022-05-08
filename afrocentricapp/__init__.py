@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 from flask_wtf.csrf import CSRFProtect
 
+from flask_migrate import Migrate
+
 #Instantiate an object of flask
 app = Flask(__name__, instance_relative_config=True)
 csrf = CSRFProtect(app)
@@ -14,6 +16,7 @@ app.config.from_object(config.ProductionConfig)
 app.config.from_pyfile('config.py', silent=False)
 
 db = SQLAlchemy(app)
+migrate= Migrate(app,db)
 
 #Load your routes/views
 from afrocentricapp.myroutes import adminroutes, userroutes #since routes is now a module of its own
